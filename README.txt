@@ -15,6 +15,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 ------------------------
 How to Use This Program
 ------------------------
+* Download and extract LKrandomizer_v.2DOWNLOAD.rar
 * Keep LKrandomizer.exe and data folder in same directory
 * Run LKrandomizer.exe
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
