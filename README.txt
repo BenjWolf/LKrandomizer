@@ -72,7 +72,7 @@ Special Thanks
 * Lost Kingdoms Fastwalking: Discord channel - for being a repository of game knowledge and nice people
 * Papaya - for his memory address knowledge, AR codes, function map, and general game expertise
 * Dan Salvato's Intro to Wii Game Modding video series
-* The contributors at GameFAQs
+* The guide authors at GameFAQs
 
 
 ------------------------
