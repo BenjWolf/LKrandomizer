@@ -61,9 +61,9 @@ F.A.Q.
 
 
 ------------------------
-Known Bugs
+Known Issues
 ------------------------
-* None, at the moment.
+* Cards given by Soldiers in Castle Wyht are not randomized
 
 
 ------------------------
