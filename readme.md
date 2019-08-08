@@ -16,7 +16,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
 * Choose the options you want to include
 * Input a custom seed or leave it random
-* Seeds must be between one to ten characters
+* Seeds must be between one to ten alphanumeric characters
 * Press 'Start Randomization' button
 * The button will turn to yellow, indicating your .iso is being copied and patched
 * A message box will pop up once complete
