@@ -6,7 +6,7 @@ class FileOutput:
     # filename
     savedPathFile = 'data/savedPath.txt'
     # constants
-    version = 'LKrandomizer_v.2'
+    version = 'LKrandomizer_v.3'
     gameTitleAppend = {int(b'2d', 16): bytes(b' - RANDOMIZED'), int(b'246C464D', 16): bytes(b' - RANDOMIZED')}
     playerNameAddress = int(b'152838', 16)
 

@@ -3,13 +3,15 @@ import os
 
 class FileLoad:
     # file names
-    cardIDFile = 'data/cardID.csv'
+    cardIDFile = 'data/cardID.csv'  # todo add rarity field
     startingDeckFile = 'data/startingDeckAddress.csv'
-    chestAddressFile = 'data/chestAddress.csv'
-    hiddenAddressFile = 'data/hiddenAddress.csv'
-    levelBonusAddressFile = 'data/levelBonusAddress.csv'
-    enemyAttributesFile = 'data/enemyAttributeAddress.txt'
-    deckPointAddressFile = 'data/deckPointAddress.txt'
+    chestCardItemFile = 'data/chestCardItem.csv'
+    levelBonusCardFile = 'data/levelBonusAddress.csv'
+    shopCardFile = 'data/shopCardAddress.txt'
+    fairyCardFile = 'data/fairyCardAddress.txt'
+    enemyAttributeFile = 'data/enemyAttributeAddress.txt'
+    deckPointFile = 'data/deckPointAddress.txt'
+    summonCardFile = 'data/summonCardAddress.txt'  # todo might change file to have another field
     savedPathFile = 'data/savedPath.txt'
 
     # constants
@@ -17,7 +19,24 @@ class FileLoad:
     gameID = bytes(b'GRNE52')
 
     def __init__(self):  # todo add exception for file loads?
-        pass
+        self.cardList = list()  # member: [cardID, get-card ID, card name]
+        self.loadCardData()
+        self.startingDeckList = list()  # member: [memory address, memory address,...]
+        self.loadStartingDeck()
+        self.chestCardItemList = list()  # member: [memory address, type, availability, level name, location desc]
+        self.loadChestCardItem()
+        self.levelBonusList = list()  # member: [memory address,...]
+        self.loadLevelBonusCards()
+        self.shopCardList = list()  # member: memory address
+        self.loadShopCards()
+        self.fairyCardList = list()  # member: memory address
+        self.loadFairyCards()
+        self.enemyAttributeList = list()  # member: memory address
+        self.loadEnemyAttributes()
+        self.deckPointList = list()  # member: memory address
+        self.loadDeckPoints()
+        self.summonList = list()  # member: memory address
+        self.loadSummonCards()
 
     def loadSavedFilePath(self):
         with open(self.savedPathFile, 'r') as file:
@@ -34,21 +53,18 @@ class FileLoad:
 
     def loadCardData(self):  # todo check if converting to bytes is necessary
         # load [card ID, card-get ID, card name] from file into cards list
-        cardsList = list()
         with open(self.cardIDFile, 'r') as file:
             lines = file.readlines()
             for line in lines:  # todo use enumerate in for loops?
                 line = line.rstrip('\r\n')
-                card = line.split(',')  # [id,name]
+                card = line.split(',')  # [id, card-get ID, card name]
                 card[0] = self.convertFromStringToInt16(card[0])
                 card[0] = (card[0]).to_bytes(1, byteorder='big')  # to bytes
                 card[1] = self.convertFromStringToInt16(card[1])
                 card[1] = (card[1]).to_bytes(1, byteorder='big')  # to bytes
-                cardsList.append(card)
-        return cardsList
+                self.cardList.append(card)
 
     def loadStartingDeck(self):
-        startingDeckList = list()
         with open(self.startingDeckFile, 'r') as file:
             lines = file.readlines()
             for line in lines:
@@ -58,36 +74,21 @@ class FileLoad:
                 for address in card:
                     address = self.convertFromStringToInt16(address)
                     cardAddresses.append(address)
-                startingDeckList.append(cardAddresses)
-        return startingDeckList
+                self.startingDeckList.append(cardAddresses)
 
-    def loadChests(self):
-        # load [memory address, level name, in-level location] from file into locations list
-        chestList = list()
-        with open(self.chestAddressFile, 'r') as file:
+    def loadChestCardItem(self):
+        # load [memory address, type, availability, level name, location desc] from file into locations list
+        with open(self.chestCardItemFile, 'r') as file:
             lines = file.readlines()
             for line in lines:
                 line = line.rstrip('\r\n')
                 location = line.split(',')
                 location[0] = self.convertFromStringToInt16(location[0])
-                chestList.append(location)
-        return chestList
-
-    def loadHiddenCards(self):
-        # load [memory address, level name, in-level location] from file into locations list
-        hiddenList = list()
-        with open(self.hiddenAddressFile, 'r') as file:
-            lines = file.readlines()
-            for line in lines:
-                line = line.rstrip('\r\n')
-                location = line.split(',')
-                location[0] = self.convertFromStringToInt16(location[0])
-                hiddenList.append(location)
-        return hiddenList
+                location[1] = int(location[1])
+                self.chestCardItemList.append(location)
 
     def loadLevelBonusCards(self):
-        levelBonusList = list()
-        with open(self.levelBonusAddressFile, 'r') as file:
+        with open(self.levelBonusCardFile, 'r') as file:
             lines = file.readlines()
             for line in lines:
                 line = line.rstrip('\r\n')
@@ -96,29 +97,58 @@ class FileLoad:
                 for address in card:
                     address = self.convertFromStringToInt16(address)
                     cardAddresses.append(address)
-                levelBonusList.append(cardAddresses)
-        return levelBonusList
+                self.levelBonusList.append(cardAddresses)
+
+    def loadShopCards(self):
+        self.loadAddressTxtFile(self.shopCardFile, self.shopCardList)
+
+    def loadFairyCards(self):
+        self.loadAddressTxtFile(self.fairyCardFile, self.fairyCardList)
 
     def loadEnemyAttributes(self):
-        enemyAttributesList = list()
-        with open(self.enemyAttributesFile, 'r') as file:
-            lines = file.readlines()
-            for address in lines:
-                address = address.rstrip('\r\n')
-                address = self.convertFromStringToInt16(address)
-                enemyAttributesList.append(address)
-        return enemyAttributesList
+        self.loadAddressTxtFile(self.enemyAttributeFile, self.enemyAttributeList)
 
     def loadDeckPoints(self):
-        deckPointList = list()
-        with open(self.deckPointAddressFile, 'r') as file:
+        self.loadAddressTxtFile(self.deckPointFile, self.deckPointList)
+
+    def loadSummonCards(self):
+        self.loadAddressTxtFile(self.summonCardFile, self.summonList)
+
+    def loadAddressTxtFile(self, fileName, intoList):
+        with open(fileName, 'r') as file:
             lines = file.readlines()
             for address in lines:
                 address = address.rstrip('\r\n')
                 address = self.convertFromStringToInt16(address)
-                deckPointList.append(address)
-        return deckPointList
+                intoList.append(address)
 
     def convertFromStringToInt16(self, string):
         int16 = int(string, 16)
         return int16
+
+    def getCardList(self):
+        return self.cardList
+
+    def getStartingDeckList(self):
+        return self.startingDeckList
+
+    def getchestCardItemList(self):
+        return self.chestCardItemList
+
+    def getLevelBonusList(self):
+        return self.levelBonusList
+
+    def getShopCardList(self):
+        return self.shopCardList
+
+    def getFairyCardList(self):
+        return self.fairyCardList
+
+    def getEnemyAttributeList(self):
+        return self.enemyAttributeList
+
+    def getDeckPointList(self):
+        return self.deckPointList
+
+    def getSummonList(self):
+        return self.summonList

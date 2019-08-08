@@ -6,42 +6,34 @@ import tkinter.messagebox as messagebox
 
 class GUI:
 
-    def __init__(self, mediator, masterWindow, savedFilePath):
+    def __init__(self, mediator, masterWindow, savedFilePath):  # todo change widgetVals dict to getFunctions?
         self.mediator = mediator
         self.masterWindow = masterWindow
-        self.masterWindow.title('LK Randomizer')
+        self.masterWindow.title('LK Randomizer v.3')
         self.masterWindow.resizable('false', 'false')
         self.seedGenInstance = seedGen.SeedGenerator()
         self.filePath = savedFilePath
-        self.fileInput = tk.StringVar()
-        self.startingDeckChecked = tk.BooleanVar()
-        self.chestCardsChecked = tk.BooleanVar()
-        self.hiddenCardsChecked = tk.BooleanVar()
-        self.levelBonusCardsChecked = tk.BooleanVar()
-        self.enemyAttributesChecked = tk.BooleanVar()
-        self.deckPointChecked = tk.BooleanVar()
-        self.writeOptionSelected = tk.IntVar()
-        self.seedInput = tk.StringVar()
-        self.makeFileSelection()
+        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'summonCardChecked': tk.BooleanVar(), 'writeOptionSelected': tk.IntVar(), 'seedInput': tk.StringVar()}
+        self.makeFileFrame()
         self.makeStartButton()
-        self.makeRandomOptions()
-        self.makeDifficultyOptions()
-        self.makeGenerationOptions()
+        self.makeRandomFrame()
+        self.makeMiddleFrame()
+        self.makeGenerationFrame()
 
-    def makeFileSelection(self):
+    def makeFileFrame(self):
         # top frame
         topFrame = tk.Frame(self.masterWindow, bd=10)
         topFrame.pack()
 
         # File selection
-        self.fileInput.set(self.filePath)
-        fileEntry = tk.Entry(topFrame, textvariable=self.fileInput, width=48)
+        self.widgetVars['fileInput'].set(self.filePath)
+        fileEntry = tk.Entry(topFrame, textvariable=self.widgetVars['fileInput'], width=48)
         fileEntry.pack(side='left')
 
         fileButton = tk.Button(topFrame, text='Select .iso', command=lambda: self.selectISO(fileEntry))
         fileButton.pack(side='left')
 
-    def makeRandomOptions(self):
+    def makeRandomFrame(self):
         # leftmost frame
         randomOptionsFrame = tk.Frame(self.masterWindow, bd=14)
         randomOptionsFrame.pack(side='left', anchor='n')
@@ -50,51 +42,70 @@ class GUI:
         optionsLabel.pack(anchor='w')
 
         # Check buttons
-        startingDeckButton = tk.Checkbutton(randomOptionsFrame, text='Starting Deck', variable=self.startingDeckChecked)
+        startingDeckButton = tk.Checkbutton(randomOptionsFrame, text='Starting deck', variable=self.widgetVars['startingDeckChecked'])
         startingDeckButton.select()
         startingDeckButton.pack(anchor='w')
 
-        chestButton = tk.Checkbutton(randomOptionsFrame, text='Chest Cards', variable=self.chestCardsChecked)
+        chestButton = tk.Checkbutton(randomOptionsFrame, text='Chest cards', variable=self.widgetVars['chestCardsChecked'])
         chestButton.select()
         chestButton.pack(anchor='w')
 
-        hiddenCardsButton = tk.Checkbutton(randomOptionsFrame, text='Hidden Cards', variable=self.hiddenCardsChecked)
+        hiddenCardsButton = tk.Checkbutton(randomOptionsFrame, text='Hidden cards', variable=self.widgetVars['hiddenCardsChecked'])
         hiddenCardsButton.select()
         hiddenCardsButton.pack(anchor='w')
 
-        levelBonusCardsButton = tk.Checkbutton(randomOptionsFrame, text='\'Level Bonus\' Cards', variable=self.levelBonusCardsChecked)
+        levelBonusCardsButton = tk.Checkbutton(randomOptionsFrame, text='\'Level Bonus\' cards', variable=self.widgetVars['levelBonusCardsChecked'])
         levelBonusCardsButton.select()
         levelBonusCardsButton.pack(anchor='w')
 
-        enemyAttributeButton = tk.Checkbutton(randomOptionsFrame, text='Enemy Attributes', variable=self.enemyAttributesChecked)
+        shopCardsButton = tk.Checkbutton(randomOptionsFrame, text='Shop cards', variable=self.widgetVars['shopCardsChecked'])
+        shopCardsButton.select()
+        shopCardsButton.pack(anchor='w')
+
+        fairyCardsButton = tk.Checkbutton(randomOptionsFrame, text='Red fairy rewards', variable=self.widgetVars['fairyCardsChecked'])
+        fairyCardsButton.select()
+        fairyCardsButton.pack(anchor='w')
+
+        enemyAttributeButton = tk.Checkbutton(randomOptionsFrame, text='Enemy attributes', variable=self.widgetVars['enemyAttributesChecked'])
         enemyAttributeButton.pack(anchor='w')
 
-    def makeDifficultyOptions(self):
-        # middle frame
+    def makeMiddleFrame(self):
+        # Difficulty options
         difficultyFrame = tk.Frame(self.masterWindow, bd=14)
         difficultyFrame.pack(side='left', anchor='n')
 
-        optionsLabel = tk.Label(difficultyFrame, text='Difficulty:')
-        optionsLabel.pack(anchor='w')
+        difficultyLabel = tk.Label(difficultyFrame, text='Difficulty:')
+        difficultyLabel.pack(anchor='w')
 
         # Check buttons
-        deckPointButton = tk.Checkbutton(difficultyFrame, text='Deactivate deck points', variable=self.deckPointChecked)
+        escapeBattleButton = tk.Checkbutton(difficultyFrame, text='Can\'t escape battles', variable=self.widgetVars['escapeBattleChecked'])
+        escapeBattleButton.pack(anchor='w')
+
+        deckPointButton = tk.Checkbutton(difficultyFrame, text='Deactivate deck points', variable=self.widgetVars['deckPointChecked'])
         deckPointButton.pack(anchor='w')
 
-    def makeGenerationOptions(self):
+        # Other options
+        otherLabel = tk.Label(difficultyFrame, text='Other:')
+        otherLabel.pack(anchor='w')
+
+        # Check buttons
+        summonCardButton = tk.Checkbutton(difficultyFrame, text='Remove summon animations', variable=self.widgetVars['summonCardChecked'])
+        summonCardButton.pack(anchor='w')
+
+    def makeGenerationFrame(self):
         # rightmost frame
         generationOptionsFrame = tk.Frame(self.masterWindow, bd=14)
         generationOptionsFrame.pack(side='left')
 
         # Radio buttons
-        bothButton = tk.Radiobutton(generationOptionsFrame, text='Generate .iso + log', variable=self.writeOptionSelected, value=1)
+        bothButton = tk.Radiobutton(generationOptionsFrame, text='Generate .iso + log', variable=self.widgetVars['writeOptionSelected'], value=1)
         bothButton.select()
         bothButton.pack(anchor='w')
 
-        isoButton = tk.Radiobutton(generationOptionsFrame, text='Generate .iso only', variable=self.writeOptionSelected, value=2)
+        isoButton = tk.Radiobutton(generationOptionsFrame, text='Generate .iso only', variable=self.widgetVars['writeOptionSelected'], value=2)
         isoButton.pack(anchor='w')
 
-        logButton = tk.Radiobutton(generationOptionsFrame, text='Generate log only', variable=self.writeOptionSelected, value=3)
+        logButton = tk.Radiobutton(generationOptionsFrame, text='Generate log only', variable=self.widgetVars['writeOptionSelected'], value=3)
         logButton.pack(anchor='w')
 
         seedFrame = tk.Frame(generationOptionsFrame)
@@ -105,7 +116,7 @@ class GUI:
         seedLabel.pack(side='left')
 
         self.setSeedInputRandom()
-        seedEntry = tk.Entry(seedFrame, textvariable=self.seedInput, width=16)
+        seedEntry = tk.Entry(seedFrame, textvariable=self.widgetVars['seedInput'], width=16)
         seedEntry.pack(side='left')
 
         newSeedButton = tk.Button(generationOptionsFrame, text='New Seed', command=lambda: self.setSeedInputRandom())
@@ -116,7 +127,7 @@ class GUI:
         bottomFrame = tk.Frame(self.masterWindow, bd=12)
         bottomFrame.pack(side='bottom')
         # start button
-        randomizeButton = tk.Button(bottomFrame, text='Start Randomization', bg='#65c421', activebackground='yellow', command=lambda: self.randomizeButtonPressed(self.fileInput.get()))
+        randomizeButton = tk.Button(bottomFrame, text='Start Randomization', bg='#65c421', activebackground='yellow', command=lambda: self.randomizeButtonPressed())
         randomizeButton.pack()
 
     def selectISO(self, fileEntry):
@@ -125,21 +136,28 @@ class GUI:
         fileEntry.delete(0, length)  # clear text
         fileEntry.insert(0, filename)  # insert text to textbox
 
-    def randomizeButtonPressed(self, isoPath):
+    def randomizeButtonPressed(self):
+        seed = self.widgetVars['seedInput'].get()
         try:
-            if not self.seedInput.get().isalpha():  # is seed only letters?
+            if not seed.isalnum():
                 raise ValueError
-            if len(self.seedInput.get()) > 10:
+            if len(seed) > 10:
                 raise Exception
         except ValueError:
             self.showSeedAlphaErrorMessage()
         except Exception:
             self.showSeedLenErrorMessage()
         else:
-            self.mediator.startRandomizer(isoPath, self.startingDeckChecked.get(), self.chestCardsChecked.get(), self.hiddenCardsChecked.get(), self.levelBonusCardsChecked.get(), self.enemyAttributesChecked.get(), self.deckPointChecked.get(), self.writeOptionSelected.get(), self.seedInput.get())
+            self.mediator.startRandomizer(self.convertWidgetVarsToVals())
+
+    def convertWidgetVarsToVals(self):
+        widgetVals = dict()
+        for k, v in self.widgetVars.items():
+            widgetVals[k] = v.get()
+        return widgetVals
 
     def showSeedAlphaErrorMessage(self):
-        messagebox.showerror('Bad Seed', 'The seed must be alphabetic. No numbers, punctuation, or symbols.')
+        messagebox.showerror('Bad Seed', 'The seed must be alphanumeric. No punctuation or symbols.')
 
     def showSeedLenErrorMessage(self):
         messagebox.showerror('Bad Seed', 'The seed must be 10 characters in length or less.')
@@ -149,12 +167,12 @@ class GUI:
 
     def showDoneMessage(self):
         doneMessage = 'The randomized .iso + log is ready'
-        if self.writeOptionSelected.get() == 2:
+        if self.widgetVars['writeOptionSelected'].get() == 2:
             doneMessage = 'The randomized .iso is ready'
-        if self.writeOptionSelected.get() == 3:
+        if self.widgetVars['writeOptionSelected'].get() == 3:
             doneMessage = 'The log is ready'
         messagebox.showinfo('Done', doneMessage)
 
     def setSeedInputRandom(self):  # todo move to main?
         newSeed = self.seedGenInstance.getSeed()
-        self.seedInput.set(newSeed)
+        self.widgetVars['seedInput'].set(newSeed)

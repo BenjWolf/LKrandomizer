@@ -14,30 +14,35 @@ class Mediator:
         self.gui = gui.GUI(self, root, savedFilePath)
         root.mainloop()  # start GUI
 
-    def startRandomizer(self, isoPath, startingDeckChecked, chestChecked, hiddenChecked, levelBonusChecked, enemyAttributes, deckPointChecked, writeOption, seed):
+    def startRandomizer(self, widgetVals):
         try:
-            if not self.loader.isGoodISO(isoPath):
+            if not self.loader.isGoodISO(widgetVals['fileInput']):  # test for good .iso Path
                 raise IOError
         except IOError:
             self.gui.showISOErrorMessage()
         else:
-            randInstance = randomizer.Randomizer(seed)
-            if startingDeckChecked or chestChecked or hiddenChecked or levelBonusChecked:
-                randInstance.setCardsList(self.loader.loadCardData())  # pass card list to randomizer
-            if startingDeckChecked:
-                randInstance.setStartingDeckList(self.loader.loadStartingDeck())
-            if chestChecked:
-                randInstance.setChestList(self.loader.loadChests())
-            if hiddenChecked:
-                randInstance.setHiddenList(self.loader.loadHiddenCards())
-            if levelBonusChecked:
-                randInstance.setLevelBonusList(self.loader.loadLevelBonusCards())
-            if enemyAttributes:
-                randInstance.setEnemyAttributeList(self.loader.loadEnemyAttributes())
-            if deckPointChecked:
-                randInstance.setDeckPointsList(self.loader.loadDeckPoints())
-            randOutputTup = randInstance.start()  # do randomization and store output in tuple
-            self.fileOutput(isoPath, writeOption, seed, randOutputTup)
+            randInstance = randomizer.Randomizer(widgetVals['seedInput'])
+            randInstance.setCardsList(self.loader.getCardList())  # pass card list to randomizer
+            if widgetVals['startingDeckChecked']:
+                randInstance.randomizeStartingDeck(self.loader.getStartingDeckList())
+            if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked']:
+                randInstance.randomizeChestCardItems(self.loader.getchestCardItemList(), widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'])
+            if widgetVals['levelBonusCardsChecked']:
+                randInstance.randomizeLevelBonusCards(self.loader.getLevelBonusList())
+            if widgetVals['shopCardsChecked']:
+                randInstance.randomizeShopCards(self.loader.getShopCardList())
+            if widgetVals['fairyCardsChecked']:
+                randInstance.randomizeFairyCards(self.loader.getFairyCardList())
+            if widgetVals['enemyAttributesChecked']:
+                randInstance.randomizeAttributes(self.loader.getEnemyAttributeList())
+            if widgetVals['escapeBattleChecked']:
+                randInstance.removeEscapeBattle()
+            if widgetVals['deckPointChecked']:
+                randInstance.deactivateDeckPoints(self.loader.getDeckPointList())
+            if widgetVals['summonCardChecked']:
+                randInstance.removeSummonAnimations(self.loader.getSummonList())
+            randOutputTup = randInstance.getRandomizerOutput()
+            self.fileOutput(widgetVals['fileInput'], widgetVals['writeOptionSelected'], widgetVals['seedInput'], randOutputTup)
             self.gui.showDoneMessage()
 
     def fileOutput(self, isoPath, writeOption, seed, randOutputTup):  # randOutputTup (randOutput dict, optionLog string, randLog string)
