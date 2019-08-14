@@ -6,12 +6,14 @@ import tkinter as tk
 
 
 class Mediator:
+    # constants
+    versionName = 'LK Randomizer v.4'
 
     def __init__(self):
         self.loader = fileLoad.FileLoad()
         root = tk.Tk()  # root to contain GUI
         savedFilePath = self.loader.loadSavedFilePath()  # user's file path for ISO
-        self.gui = gui.GUI(self, root, savedFilePath)
+        self.gui = gui.GUI(self, root, savedFilePath, self.versionName)
         root.mainloop()  # start GUI
 
     def startRandomizer(self, widgetVals):
@@ -22,11 +24,11 @@ class Mediator:
             self.gui.showISOErrorMessage()
         else:
             randInstance = randomizer.Randomizer(widgetVals['seedInput'])
-            randInstance.setCardsList(self.loader.getCardList())  # pass card list to randomizer
+            randInstance.setCardsList(self.loader.getCardIDs())  # pass card list to randomizer
             if widgetVals['startingDeckChecked']:
                 randInstance.randomizeStartingDeck(self.loader.getStartingDeckList())
-            if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked']:
-                randInstance.randomizeChestCardItems(self.loader.getchestCardItemList(), widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'])
+            if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked'] or widgetVals['keyItemsChecked']:
+                randInstance.randomizeChestCardItems(self.loader.getchestCardItemList(), widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], self.loader.getItemIDs())
             if widgetVals['levelBonusCardsChecked']:
                 randInstance.randomizeLevelBonusCards(self.loader.getLevelBonusList())
             if widgetVals['shopCardsChecked']:
@@ -42,17 +44,20 @@ class Mediator:
             if widgetVals['summonCardChecked']:
                 randInstance.removeSummonAnimations(self.loader.getSummonList())
             randOutputTup = randInstance.getRandomizerOutput()
-            self.fileOutput(widgetVals['fileInput'], widgetVals['writeOptionSelected'], widgetVals['seedInput'], randOutputTup)
+            self.fileOutput(widgetVals['fileInput'], widgetVals['seedInput'], widgetVals['genIsoSelected'], widgetVals['includeSpoilersSelected'], randOutputTup)
             self.gui.showDoneMessage()
 
-    def fileOutput(self, isoPath, writeOption, seed, randOutputTup):  # randOutputTup (randOutput dict, optionLog string, randLog string)
+    def fileOutput(self, isoPath, seed, genIso, includeSpoilers, randOutputTup):  # randOutputTup (randOutput dict, optionLog string, randLog string)
         outputInstance = fileOutput.FileOutput()
-        if writeOption == 1 or writeOption == 2:
+        if genIso:
             outputInstance.copyISO(isoPath, seed)
             outputInstance.changePlayerNameToSeed(seed)
             outputInstance.writeToISO(randOutputTup[0])
-        if writeOption == 1 or writeOption == 3:
-            outputInstance.writeToLog(seed, randOutputTup[1], randOutputTup[2])
+        if includeSpoilers:
+            spoilers = randOutputTup[2]
+        else:
+            spoilers = 'No spoilers'
+        outputInstance.writeToLog(self.versionName, seed, randOutputTup[1], spoilers)
         outputInstance.saveFilePath(isoPath)
 
 

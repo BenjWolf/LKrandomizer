@@ -6,7 +6,6 @@ class FileOutput:
     # filename
     savedPathFile = 'data/savedPath.txt'
     # constants
-    version = 'LKrandomizer_v.3'
     gameTitleAppend = {int(b'2d', 16): bytes(b' - RANDOMIZED'), int(b'246C464D', 16): bytes(b' - RANDOMIZED')}
     playerNameAddress = int(b'152838', 16)
 
@@ -31,9 +30,9 @@ class FileOutput:
                 iso_file.seek(address)
                 iso_file.write(value)
 
-    def writeToLog(self, seed, optionLog, randLog):
+    def writeToLog(self, versionName, seed, optionLog, randLog):
         localTime = time.asctime(time.localtime(time.time()))
-        self.logString += self.version + '\n'
+        self.logString += versionName + '\n'
         self.logString += 'Randomized on: ' + localTime + '\n'
         self.logString += 'Seed: ' + seed + '\n\n'
         self.logString += optionLog + '\n'
