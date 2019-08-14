@@ -1,8 +1,8 @@
-# LKrandomizer v.3
+# LKrandomizer v.4
 ~~~
 Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
-8/8/2019
+8/14/2019
 ~~~
 ## Description
 
@@ -10,7 +10,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ## How to Use This Program
 
-* Download and extract LKrandomizer_v.3DOWNLOAD.rar
+* Download and extract LKrandomizer_v.4DOWNLOAD.rar
 * Keep LKrandomizer.exe and data folder in same directory
 * Run LKrandomizer.exe
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
@@ -25,7 +25,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 ## Features
 
 * Mix and match randomization options: starting deck, chest cards, shop cards, enemy attributes
-* Every level required to beat the game is included in randomization.
+* Main levels and side missions included in randomization.
 * Difficulty options: deactivated deck points, no escaping battles
 * Seed displayed in-game as default player name
 * Output log with descriptions of starting deck, chest contents, etc.
@@ -42,6 +42,21 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 * Red fairy rewards: The cards rewarded to you for trading in fairies is randomized
 * Enemy attributes: The elemental type (fire, water, earth, wood, neutral) of enemies is randomized. This affects bosses and card users, as well. Neutral attribute is less likely to be selected.
 
+### Key Items
+
+* Must have randomized chests and/or randomized hidden cards active to randomize key items
+* All 15 items in the game are randomly placed in an accessible location
+~~~
+Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wyht, Red Candle, Blue Candle, Green Candle, Yellow Candle, Old Sheet Music, Stone of Cleansing, White Gem, Black Gem, Stone of Darkness, Necklace of the Pharaoh
+~~~
+* The side levels and elemental temples may contain items
+* Currently you can still get the Shayel Key from beating Mind Flayer, in addition to finding it in a chest. Same for Key of Castle Wyht given by soldier.
+* The herb trees in Rohbach are deactivated, to complete the level you must have the 3 herbs in your inventory and reach the last herb tree
+* After using an item, or leaving a level, all items stay in your inventory
+* After completing a level, you can reenter it anytime so that you can't miss items
+* Key items are not saved to memory card, so use save states if you want to save your game
+* The pause menu will only show 5 of your items, so take notes
+
 ### Difficulty
 
 * Can't escape battles: Disables walking to edge of arena to leave battle
@@ -52,7 +67,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 * Remove summon animations: Only select this option if you are OK with minor gameplay changes. Changes damage dealing summon cards into weapon cards.
 The affect of the attack is the same, but the summon cutscene does not play and Katia does not transform into the creature. This option also affects the cards used by Helena and Thalnos.
 ~~~
-Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dragon, Giant Crab, Lycanthrope, Necromancer, Birdman, Archer Tree, Blood Bush, Fire Gargoyle, Chimera, Venus Spider, Puppet Master, Elephant
+Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dragon, Giant Crab, Lycanthrope, Necromancer, Birdman, Archer Tree, Blood Bush, Fire Gargoyle, Chimera, Venus Spider, Elephant
 ~~~
 
 ## F.A.Q.
@@ -61,11 +76,8 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 
   All random options must be the same for the same result, but the difficulty options will not impact randomization.
   
-* Are the side level chests randomized?
-
-  Not yet.
   
-* Are the fairy chests or key item chests randomized?
+* Are the fairy chests randomized?
 
   Not yet.
   
@@ -79,7 +91,11 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 
 ## Known Issues/Bugs
 
-* The cards given by the soldiers in Castle Wyht are not randomized
+* The cards and key given by the soldiers in Castle Wyht are not randomized
+* Key items placed in card chests/hidden cards still show a card model and have incorrect animation
+* Key items placed in non-vanilla key item chests show wrong model
+* Key item inventory will carry between save games/new games, need to reset to empty inventory
+* Pause menu only shows first 5 key items
 
 ## Special Thanks
 
