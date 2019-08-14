@@ -94,6 +94,7 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 * The cards and key given by the soldiers in Castle Wyht are not randomized
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
 * Key items placed in non-vanilla key item chests show wrong model
+* Cards placed in key item chests will not have a model
 * Key item inventory will carry between save games/new games, need to reset to empty inventory
 * Pause menu only shows first 5 key items
 
