@@ -45,7 +45,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 ### Key Items
 
 * Must have randomized chests and/or randomized hidden cards active to randomize key items
-* All 15 items in the game are randomly placed in an accessible location
+* All 15 items in the game are randomly placed in an accessible location (chest or hidden card)
 ~~~
 Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wyht, Red Candle, Blue Candle, Green Candle, Yellow Candle, Old Sheet Music, Stone of Cleansing, White Gem, Black Gem, Stone of Darkness, Necklace of the Pharaoh
 ~~~
