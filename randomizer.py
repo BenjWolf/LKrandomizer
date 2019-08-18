@@ -14,7 +14,7 @@ class Randomizer:
     def __init__(self, seedVal):
         self.seedVal = seedVal
         random.seed(a=self.seedVal)  # seed the random module
-        self.cardList = list()  # member: [cardID, get-card ID, card name]
+        self.cardList = list()  # member: card object
         self.outputDict = dict()  # key: address val: randomized value
         self.optionLog = 'Options:\n'
         self.spoilerLog = str()
@@ -25,54 +25,56 @@ class Randomizer:
         for cardSlot in startingDeckList:  # cardSlot: [memory address, memory address,...]
             card = self.getRandomCard()
             for address in cardSlot:
-                self.outputDict[address] = card[0]
+                self.outputDict[address] = card.cardID
             amount = str((len(cardSlot) - 1))
-            self.spoilerLog += (card[2] + ' x' + amount + '. ')  # print card name
+            self.spoilerLog += (card.cardName + ' x' + amount + '. ')  # print card name
         self.spoilerLog += '\n\n'
 
     def randomizeChestCardItems(self, chestCardItemList, doChestCards, doHiddenCards, doKeyItems, itemID):
-        locationList = list(chestCardItemList)  # make copy of list
+        liveLocationList = list(chestCardItemList)  # make copy of list
         itemLocationDict = dict()
         if doChestCards:
             self.optionLog += 'Randomized chest cards\n'
         else:  # remove chest cards from list
-            for member in chestCardItemList:
-                if member[1] == 1:
-                    locationList.remove(member)
+            for location in chestCardItemList:
+                if location.originalType == 1:
+                    liveLocationList.remove(location)
         if doHiddenCards:
             self.optionLog += 'Randomized hidden cards\n'
         else:  # remove hidden cards from list
-            for member in chestCardItemList:
-                if member[1] == 2:
-                    locationList.remove(member)
+            for location in chestCardItemList:
+                if location.originalType == 2:
+                    liveLocationList.remove(location)
         if doKeyItems:
             self.optionLog += 'Randomized key items\n'
             self.fixForItems()
-            IP = itemPlacer.ItemPlacer(locationList, itemID)
+            IP = itemPlacer.ItemPlacer(liveLocationList, itemID)
             goodItems = False
             while not goodItems:  # keep going until good item locations
                 goodItems = IP.randomizeItemLocations()
             itemLocationDict = IP.getItemLocationDict()
         else:  # remove key items from list
-            for member in chestCardItemList:
-                if member[1] == 3:
-                    locationList.remove(member)
+            for location in chestCardItemList:
+                if location.originalType == 3:
+                    liveLocationList.remove(location)
         # build output dict and log
-        for location in locationList:
-            if location[0] in itemLocationDict.keys():  # item goes there
-                item = itemLocationDict[location[0]]
-                if location[1] == 1 or location[1] == 2:  # originally chest or hidden card location
+        for location in liveLocationList:
+            if location.address in itemLocationDict.keys():  # item goes there
+                item = itemLocationDict[location.address]
+                itemBytes = item.itemID
+                if location.originalType == 1 or location.originalType == 2:  # originally chest or hidden card location
                     # append item-get to itemID
-                    item[0] = item[0] + self.itemGetByte
-                self.outputDict[location[0]] = item[0]
-                self.spoilerLog += (location[3] + ' ' + location[4] + ' has ' + item[1] + ' [!]' + '\n')  # (Level name) (location) has (item name)
+                    itemBytes = itemBytes + self.itemGetByte
+                self.outputDict[location.address] = itemBytes
+                self.spoilerLog += (location.levelName + ' ' + location.description + ' has ' + item.itemName + ' [!]' + '\n')  # (Level name) (location) has (item name)
             else:  # put card there
                 card = self.getRandomCard()
-                if location[1] == 3:  # originally item location
-                    # append card-get to cardID
-                    card[1] = card[1] + self.cardGetByte
-                self.outputDict[location[0]] = card[1]  # pair up location and get-card ID
-                self.spoilerLog += (location[3] + ' ' + location[4] + ' has ' + card[2] + '\n')  # (Level name) (location) has (card name)
+                cardBytes = card.interactID
+                if location.originalType == 3:  # originally item location
+                    # append card-get to interactID
+                    cardBytes = cardBytes + self.cardGetByte
+                self.outputDict[location.address] = cardBytes  # pair up location and card interact ID
+                self.spoilerLog += (location.levelName + ' ' + location.description + ' has ' + card.cardName + '\n')  # (Level name) (location) has (card name)
         self.spoilerLog += '\n'
 
     def randomizeLevelBonusCards(self, levelBonusList):
@@ -80,7 +82,7 @@ class Randomizer:
         for cardSlot in levelBonusList:  # cardSlot: [memory address,...]
             for address in cardSlot:
                 card = self.getRandomCard()
-                self.outputDict[address] = card[0]
+                self.outputDict[address] = card.cardID
 
     def randomizeShopCards(self, shopCardList):
         self.optionLog += 'Randomized shop cards\n'
@@ -89,8 +91,8 @@ class Randomizer:
         for address in shopCardList:
             n += 1
             card = self.getRandomCard()
-            self.outputDict[address] = card[0]
-            self.spoilerLog += card[2] + '. '  # print card name
+            self.outputDict[address] = card.cardID
+            self.spoilerLog += card.cardName + '. '  # print card name
             if n % 10 == 0:  # every tenth card start new line
                 self.spoilerLog += '\n'
         self.spoilerLog += '\n'
@@ -100,8 +102,8 @@ class Randomizer:
         self.spoilerLog += 'Red fairy rewards:\n'
         for address in fairyCardList:
             card = self.getRandomCard()
-            self.outputDict[address] = card[0]
-            self.spoilerLog += card[2] + '. '  # print card name
+            self.outputDict[address] = card.cardID
+            self.spoilerLog += card.cardName + '. '  # print card name
 
     def randomizeAttributes(self, enemyAttributeList):
         self.optionLog += 'Randomized enemy attributes\n'
@@ -120,8 +122,8 @@ class Randomizer:
 
     def removeSummonAnimations(self, summonList):
         self.optionLog += 'Removed summon animations\n'
-        for card in summonList:  # member: memory address
-            self.outputDict[card[0]] = card[1]
+        for summon in summonList:  # member: memory address
+            self.outputDict[summon.address] = summon.attackType
 
     def fixForItems(self):
         itemFixDict = {int(b'8BDF4', 16): self.nopCode,  # remove items load out
@@ -135,9 +137,9 @@ class Randomizer:
                        int(b'89C60', 16): self.nopCode,  # remove stone of cleansing
                        int(b'89CAC', 16): self.nopCode,  # remove necklace of pharaoh
                        int(b'C8B44', 16): self.nopCode,  # close level after complete
-                       int(b'1CB0B181', 16): self.zeroBytes,  # rohbach tree 1
-                       int(b'1CB0BF01', 16): self.zeroBytes,  # rohbach tree 2
-                       int(b'1CB0D0C1', 16): self.zeroBytes}  # rohbach tree 3
+                       int(b'1CB0B181', 16): self.zeroBytes,  # interact rohbach tree 1
+                       int(b'1CB0BF01', 16): self.zeroBytes,  # interact rohbach tree 2
+                       int(b'1CB0D0C1', 16): self.zeroBytes}  # interact rohbach tree 3
         self.outputDict.update(itemFixDict)
 
     def getRandomCard(self):

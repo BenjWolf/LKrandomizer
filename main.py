@@ -7,7 +7,7 @@ import tkinter as tk
 
 class Mediator:
     # constants
-    versionName = 'LK Randomizer v.4'
+    versionName = 'LK Randomizer v0.5'
 
     def __init__(self):
         self.loader = fileLoad.FileLoad()
@@ -24,25 +24,25 @@ class Mediator:
             self.gui.showISOErrorMessage()
         else:
             randInstance = randomizer.Randomizer(widgetVals['seedInput'])
-            randInstance.setCardsList(self.loader.getCardIDs())  # pass card list to randomizer
+            randInstance.setCardsList(self.loader.cardList)  # pass card list to randomizer
             if widgetVals['startingDeckChecked']:
-                randInstance.randomizeStartingDeck(self.loader.getStartingDeckList())
+                randInstance.randomizeStartingDeck(self.loader.startingDeckList)
             if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked'] or widgetVals['keyItemsChecked']:
-                randInstance.randomizeChestCardItems(self.loader.getchestCardItemList(), widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], self.loader.getItemIDs())
+                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], self.loader.itemList)
             if widgetVals['levelBonusCardsChecked']:
-                randInstance.randomizeLevelBonusCards(self.loader.getLevelBonusList())
+                randInstance.randomizeLevelBonusCards(self.loader.levelBonusList)
             if widgetVals['shopCardsChecked']:
-                randInstance.randomizeShopCards(self.loader.getShopCardList())
+                randInstance.randomizeShopCards(self.loader.shopCardList)
             if widgetVals['fairyCardsChecked']:
-                randInstance.randomizeFairyCards(self.loader.getFairyCardList())
+                randInstance.randomizeFairyCards(self.loader.fairyCardList)
             if widgetVals['enemyAttributesChecked']:
-                randInstance.randomizeAttributes(self.loader.getEnemyAttributeList())
+                randInstance.randomizeAttributes(self.loader.enemyAttributeList)
             if widgetVals['escapeBattleChecked']:
                 randInstance.removeEscapeBattle()
             if widgetVals['deckPointChecked']:
-                randInstance.deactivateDeckPoints(self.loader.getDeckPointList())
+                randInstance.deactivateDeckPoints(self.loader.deckPointList)
             if widgetVals['summonCardChecked']:
-                randInstance.removeSummonAnimations(self.loader.getSummonList())
+                randInstance.removeSummonAnimations(self.loader.summonList)
             randOutputTup = randInstance.getRandomizerOutput()
             self.fileOutput(widgetVals['fileInput'], widgetVals['seedInput'], widgetVals['genIsoSelected'], widgetVals['includeSpoilersSelected'], randOutputTup)
             self.gui.showDoneMessage()

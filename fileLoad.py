@@ -1,9 +1,10 @@
 import os
+import classes
 
 
 class FileLoad:
     # file names
-    cardIDFile = 'data/cardID.csv'  # todo add rarity field
+    cardIDFile = 'data/cardID.csv'
     itemIDFile = 'data/itemID.csv'
     startingDeckFile = 'data/startingDeckAddress.csv'
     chestCardItemFile = 'data/chestCardItem.csv'
@@ -12,7 +13,7 @@ class FileLoad:
     fairyCardFile = 'data/fairyCardAddress.txt'
     enemyAttributeFile = 'data/enemyAttributeAddress.txt'
     deckPointFile = 'data/deckPointAddress.txt'
-    summonCardFile = 'data/summonCardAddress.txt'  # todo might change file to have another field
+    summonCardFile = 'data/summonCardAddress.txt'
     savedPathFile = 'data/savedPath.txt'
 
     # constants
@@ -20,10 +21,10 @@ class FileLoad:
     gameID = bytes(b'GRNE52')
 
     def __init__(self):  # todo add exception for file loads?
-        self.cardIDList = list()  # member: [cardID, get-card ID, card name]
-        self.loadCardIDs()
-        self.itemIDList = list()  # member: [itemID, item name]
-        self.loadItemIDs()
+        self.cardList = list()  # member: card object
+        self.loadCards()
+        self.itemList = list()  # member: [itemID, item name]
+        self.loadItems()
         self.startingDeckList = list()  # member: [memory address, memory address,...]
         self.loadStartingDeck()
         self.chestCardItemList = list()  # member: [memory address, type, area, level name, location desc]
@@ -54,29 +55,31 @@ class FileLoad:
                 return False
         return True
 
-    def loadCardIDs(self):  # todo check if converting to bytes is necessary
-        # load [card ID, card-get ID, card name] from file into cards list
+    def loadCards(self):  # todo check if converting to bytes is necessary
+        # load [card ID, interact ID, card name, rarity] from file into cards list
         with open(self.cardIDFile, 'r') as file:
             lines = file.readlines()
-            for line in lines:  # todo use enumerate in for loops?
+            for line in lines:
                 line = line.rstrip('\r\n')
-                card = line.split(',')  # [id, card-get ID, card name]
-                card[0] = self.convertFromStringToInt16(card[0])
-                card[0] = (card[0]).to_bytes(1, byteorder='big')  # to bytes
-                card[1] = self.convertFromStringToInt16(card[1])
-                card[1] = (card[1]).to_bytes(1, byteorder='big')  # to bytes
-                self.cardIDList.append(card)
+                line = line.split(',')
+                line[0] = self.convertFromStringToInt16(line[0])
+                line[0] = (line[0]).to_bytes(1, byteorder='big')  # to bytes
+                line[1] = self.convertFromStringToInt16(line[1])
+                line[1] = (line[1]).to_bytes(1, byteorder='big')  # to bytes
+                card = classes.Card(line[0], line[1], line[2], line[3])
+                self.cardList.append(card)
 
-    def loadItemIDs(self):
+    def loadItems(self):
         # load [item ID, card name] from file into cards list
         with open(self.itemIDFile, 'r') as file:
             lines = file.readlines()
-            for line in lines:  # todo use enumerate in for loops?
+            for line in lines:
                 line = line.rstrip('\r\n')
-                item = line.split(',')
-                item[0] = self.convertFromStringToInt16(item[0])
-                item[0] = (item[0]).to_bytes(1, byteorder='big')  # to bytes
-                self.itemIDList.append(item)
+                line = line.split(',')
+                line[0] = self.convertFromStringToInt16(line[0])
+                line[0] = (line[0]).to_bytes(1, byteorder='big')  # to bytes
+                item = classes.Item(line[0], line[1])
+                self.itemList.append(item)
 
     def loadStartingDeck(self):
         with open(self.startingDeckFile, 'r') as file:
@@ -96,10 +99,11 @@ class FileLoad:
             lines = file.readlines()
             for line in lines:
                 line = line.rstrip('\r\n')
-                location = line.split(',')
-                location[0] = self.convertFromStringToInt16(location[0])
-                location[1] = int(location[1])
-                location[2] = int(location[2])
+                line = line.split(',')
+                line[0] = self.convertFromStringToInt16(line[0])
+                line[1] = int(line[1])
+                line[2] = int(line[2])
+                location = classes.Location(line[0], line[1], line[2], line[3], line[4])
                 self.chestCardItemList.append(location)
 
     def loadLevelBonusCards(self):
@@ -131,11 +135,12 @@ class FileLoad:
             lines = file.readlines()
             for line in lines:
                 line = line.rstrip('\r\n')
-                card = line.split(',')
-                card[0] = self.convertFromStringToInt16(card[0])
-                card[1] = self.convertFromStringToInt16(card[1])
-                card[1] = (card[1]).to_bytes(1, byteorder='big')  # to bytes
-                self.summonList.append(card)
+                line = line.split(',')
+                line[0] = self.convertFromStringToInt16(line[0])
+                line[1] = self.convertFromStringToInt16(line[1])
+                line[1] = (line[1]).to_bytes(1, byteorder='big')  # to bytes
+                summon = classes.Summon(line[0], line[1])
+                self.summonList.append(summon)
 
     def loadAddressTxtFile(self, fileName, intoList):
         with open(fileName, 'r') as file:
@@ -148,33 +153,3 @@ class FileLoad:
     def convertFromStringToInt16(self, string):
         int16 = int(string, 16)
         return int16
-
-    def getCardIDs(self):
-        return self.cardIDList
-
-    def getItemIDs(self):
-        return self.itemIDList
-
-    def getStartingDeckList(self):
-        return self.startingDeckList
-
-    def getchestCardItemList(self):
-        return self.chestCardItemList
-
-    def getLevelBonusList(self):
-        return self.levelBonusList
-
-    def getShopCardList(self):
-        return self.shopCardList
-
-    def getFairyCardList(self):
-        return self.fairyCardList
-
-    def getEnemyAttributeList(self):
-        return self.enemyAttributeList
-
-    def getDeckPointList(self):
-        return self.deckPointList
-
-    def getSummonList(self):
-        return self.summonList
