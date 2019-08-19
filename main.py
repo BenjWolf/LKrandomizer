@@ -28,7 +28,8 @@ class Mediator:
             if widgetVals['startingDeckChecked']:
                 randInstance.randomizeStartingDeck(self.loader.startingDeckList)
             if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked'] or widgetVals['keyItemsChecked']:
-                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], self.loader.itemList)
+                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], widgetVals['itemOption'], self.loader.itemList)
+                randInstance.randomizeWarriorWyhtCards(self.loader.warriorWyhtList)
             if widgetVals['levelBonusCardsChecked']:
                 randInstance.randomizeLevelBonusCards(self.loader.levelBonusList)
             if widgetVals['shopCardsChecked']:

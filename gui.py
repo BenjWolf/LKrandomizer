@@ -13,13 +13,14 @@ class GUI:
         self.masterWindow.resizable('false', 'false')
         self.seedGenInstance = seedGen.SeedGenerator()
         self.filePath = savedFilePath
-        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'summonCardChecked': tk.BooleanVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
+        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'itemOption': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'summonCardChecked': tk.BooleanVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
         self.keyItemsButton = tk.Checkbutton()
+        self.itemOption = tk.Checkbutton()
         self.makeFileFrame()
         self.makeStartButton()
-        self.makeRandomFrame()
+        self.makeLeftFrame()
         self.makeMiddleFrame()
-        self.makeGenerationFrame()
+        self.makeRightFrame()
 
     def makeFileFrame(self):
         # top frame
@@ -34,75 +35,82 @@ class GUI:
         fileButton = tk.Button(topFrame, text='Select .iso', command=lambda: self.selectISO(fileEntry))
         fileButton.pack(side='left')
 
-    def makeRandomFrame(self):
+    def makeLeftFrame(self):
         # leftmost frame
-        randomOptionsFrame = tk.Frame(self.masterWindow, bd=14)
-        randomOptionsFrame.pack(side='left', anchor='n')
+        leftFrame = tk.Frame(self.masterWindow, bd=14)
+        leftFrame.pack(side='left', anchor='n')
 
-        optionsLabel = tk.Label(randomOptionsFrame, text='Include random:')
+        optionsLabel = tk.Label(leftFrame, text='Include random:')
         optionsLabel.pack(anchor='w')
 
         # Check buttons
-        startingDeckButton = tk.Checkbutton(randomOptionsFrame, text='Starting deck', variable=self.widgetVars['startingDeckChecked'])
+        startingDeckButton = tk.Checkbutton(leftFrame, text='Starting deck', variable=self.widgetVars['startingDeckChecked'])
         startingDeckButton.select()
         startingDeckButton.pack(anchor='w')
 
-        chestButton = tk.Checkbutton(randomOptionsFrame, text='Chest cards', variable=self.widgetVars['chestCardsChecked'], command=lambda: self.chestHiddenItemButtonPressed())
+        chestButton = tk.Checkbutton(leftFrame, text='Chest cards', variable=self.widgetVars['chestCardsChecked'], command=lambda: self.updateKeyItemsButton())
         chestButton.select()
         chestButton.pack(anchor='w')
 
-        hiddenCardsButton = tk.Checkbutton(randomOptionsFrame, text='Hidden cards', variable=self.widgetVars['hiddenCardsChecked'], command=lambda: self.chestHiddenItemButtonPressed())
+        hiddenCardsButton = tk.Checkbutton(leftFrame, text='Hidden cards', variable=self.widgetVars['hiddenCardsChecked'], command=lambda: self.updateKeyItemsButton())
         hiddenCardsButton.select()
         hiddenCardsButton.pack(anchor='w')
 
-        levelBonusCardsButton = tk.Checkbutton(randomOptionsFrame, text='\'Level Bonus\' cards', variable=self.widgetVars['levelBonusCardsChecked'])
+        levelBonusCardsButton = tk.Checkbutton(leftFrame, text='\'Level Bonus\' cards', variable=self.widgetVars['levelBonusCardsChecked'])
         levelBonusCardsButton.select()
         levelBonusCardsButton.pack(anchor='w')
 
-        shopCardsButton = tk.Checkbutton(randomOptionsFrame, text='Shop cards', variable=self.widgetVars['shopCardsChecked'])
+        shopCardsButton = tk.Checkbutton(leftFrame, text='Shop cards', variable=self.widgetVars['shopCardsChecked'])
         shopCardsButton.select()
         shopCardsButton.pack(anchor='w')
 
-        fairyCardsButton = tk.Checkbutton(randomOptionsFrame, text='Red fairy rewards', variable=self.widgetVars['fairyCardsChecked'])
+        fairyCardsButton = tk.Checkbutton(leftFrame, text='Red fairy rewards', variable=self.widgetVars['fairyCardsChecked'])
         fairyCardsButton.select()
         fairyCardsButton.pack(anchor='w')
 
-        self.keyItemsButton = tk.Checkbutton(randomOptionsFrame, text='Key items', variable=self.widgetVars['keyItemsChecked'])
-        self.keyItemsButton.pack(anchor='w')
-
-        enemyAttributeButton = tk.Checkbutton(randomOptionsFrame, text='Enemy attributes', variable=self.widgetVars['enemyAttributesChecked'])
+        enemyAttributeButton = tk.Checkbutton(leftFrame, text='Enemy attributes', variable=self.widgetVars['enemyAttributesChecked'])
         enemyAttributeButton.pack(anchor='w')
 
     def makeMiddleFrame(self):
-        # Difficulty options
-        difficultyFrame = tk.Frame(self.masterWindow, bd=14)
-        difficultyFrame.pack(side='left', anchor='n')
+        middleFrame = tk.Frame(self.masterWindow, bd=14)
+        middleFrame.pack(side='left', anchor='n')
 
-        difficultyLabel = tk.Label(difficultyFrame, text='Difficulty:')
+        # Key items
+        keyItemsLabel = tk.Label(middleFrame, text='Key Items:')
+        keyItemsLabel.pack(anchor='w')
+
+        self.keyItemsButton = tk.Checkbutton(middleFrame, text='Random location', variable=self.widgetVars['keyItemsChecked'], command=lambda: self.updateItemOptionButton())
+        self.keyItemsButton.pack(anchor='w')
+
+        self.itemOption = tk.Checkbutton(middleFrame, text='Allow hidden cards to be items', variable=self.widgetVars['itemOption'], state='disabled')
+        self.itemOption.pack(anchor='w')
+
+        # Difficulty options
+        difficultyLabel = tk.Label(middleFrame, text='Difficulty:')
         difficultyLabel.pack(anchor='w')
 
         # Check buttons
-        escapeBattleButton = tk.Checkbutton(difficultyFrame, text='Can\'t escape battles', variable=self.widgetVars['escapeBattleChecked'])
+        escapeBattleButton = tk.Checkbutton(middleFrame, text='Can\'t escape battles', variable=self.widgetVars['escapeBattleChecked'])
         escapeBattleButton.pack(anchor='w')
 
-        deckPointButton = tk.Checkbutton(difficultyFrame, text='Deactivate deck points', variable=self.widgetVars['deckPointChecked'])
+        deckPointButton = tk.Checkbutton(middleFrame, text='Deactivate deck points', variable=self.widgetVars['deckPointChecked'])
         deckPointButton.pack(anchor='w')
 
         # Other options
-        otherLabel = tk.Label(difficultyFrame, text='Other:')
+        otherLabel = tk.Label(middleFrame, text='Other:')
         otherLabel.pack(anchor='w')
 
         # Check buttons
-        summonCardButton = tk.Checkbutton(difficultyFrame, text='Remove summon animations', variable=self.widgetVars['summonCardChecked'])
+        summonCardButton = tk.Checkbutton(middleFrame, text='Remove summon animations', variable=self.widgetVars['summonCardChecked'])
         summonCardButton.pack(anchor='w')
 
-    def makeGenerationFrame(self):
+    def makeRightFrame(self):
         # rightmost frame
-        rightmostFrame = tk.Frame(self.masterWindow, bd=14)
-        rightmostFrame.pack(side='left')
+        rightFrame = tk.Frame(self.masterWindow, bd=14)
+        rightFrame.pack(side='left')
 
         # seed frame
-        seedFrame = tk.Frame(rightmostFrame)
+        seedFrame = tk.Frame(rightFrame)
         seedFrame.pack()
 
         # seed
@@ -113,22 +121,22 @@ class GUI:
         seedEntry = tk.Entry(seedFrame, textvariable=self.widgetVars['seedInput'], width=16)
         seedEntry.pack(side='left')
 
-        newSeedButton = tk.Button(rightmostFrame, text='New Seed', command=lambda: self.setSeedInputRandom())
+        newSeedButton = tk.Button(rightFrame, text='New Seed', command=lambda: self.setSeedInputRandom())
         newSeedButton.pack()
 
         # output options
-        spacerLabel = tk.Label(rightmostFrame, text='')
+        spacerLabel = tk.Label(rightFrame, text='')
         spacerLabel.pack(pady=10)
 
-        generationLabel = tk.Label(rightmostFrame, text='Output: ')
+        generationLabel = tk.Label(rightFrame, text='Output: ')
         generationLabel.pack(anchor='w')
 
         # Check buttons
-        generateIsoButton = tk.Checkbutton(rightmostFrame, text='Generate .iso', variable=self.widgetVars['genIsoSelected'])
+        generateIsoButton = tk.Checkbutton(rightFrame, text='Generate .iso', variable=self.widgetVars['genIsoSelected'])
         generateIsoButton.select()
         generateIsoButton.pack(anchor='w')
 
-        includeSpoilersButton = tk.Checkbutton(rightmostFrame, text='Include spoilers in log', variable=self.widgetVars['includeSpoilersSelected'])
+        includeSpoilersButton = tk.Checkbutton(rightFrame, text='Include spoilers in log', variable=self.widgetVars['includeSpoilersSelected'])
         includeSpoilersButton.pack(anchor='w')
 
     def makeStartButton(self):
@@ -145,14 +153,24 @@ class GUI:
         fileEntry.delete(0, length)  # clear text
         fileEntry.insert(0, filename)  # insert text to textbox
 
-    def chestHiddenItemButtonPressed(self):
-        # if both chest cards and hidden cards unchecked
-        if not (self.widgetVars['chestCardsChecked'].get() or self.widgetVars['hiddenCardsChecked'].get()):
+    def updateKeyItemsButton(self):
+        # if chest cards unchecked
+        if not (self.widgetVars['chestCardsChecked'].get()):
             # uncheck key items button and deactivate
             self.keyItemsButton.deselect()
             self.keyItemsButton['state'] = 'disabled'
+            self.updateItemOptionButton()
         else:
             self.keyItemsButton['state'] = 'normal'
+            self.updateItemOptionButton()
+
+
+    def updateItemOptionButton(self):
+        if not (self.widgetVars['keyItemsChecked'].get() and self.widgetVars['hiddenCardsChecked'].get()):
+            self.itemOption.deselect()
+            self.itemOption['state'] = 'disabled'
+        else:
+            self.itemOption['state'] = 'normal'
 
     def randomizeButtonPressed(self):
         seed = self.widgetVars['seedInput'].get()

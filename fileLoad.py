@@ -8,6 +8,7 @@ class FileLoad:
     itemIDFile = 'data/itemID.csv'
     startingDeckFile = 'data/startingDeckAddress.csv'
     chestCardItemFile = 'data/chestCardItem.csv'
+    warriorWyhtFile = 'data/warriorWyhtAddress.txt'
     levelBonusCardFile = 'data/levelBonusAddress.csv'
     shopCardFile = 'data/shopCardAddress.txt'
     fairyCardFile = 'data/fairyCardAddress.txt'
@@ -29,6 +30,8 @@ class FileLoad:
         self.loadStartingDeck()
         self.chestCardItemList = list()  # member: [memory address, type, area, level name, location desc]
         self.loadChestCardItem()
+        self.warriorWyhtList = list() # member: memory address
+        self.loadWarriorWyht()
         self.levelBonusList = list()  # member: [memory address,...]
         self.loadLevelBonusCards()
         self.shopCardList = list()  # member: memory address
@@ -103,8 +106,15 @@ class FileLoad:
                 line[0] = self.convertFromStringToInt16(line[0])
                 line[1] = int(line[1])
                 line[2] = int(line[2])
-                location = classes.Location(line[0], line[1], line[2], line[3], line[4])
+                if not line[5] == '':
+                    line[5] = self.convertFromStringToInt16(line[5])
+                    location = classes.Location(line[0], line[1], line[2], line[3], line[4], line[5])
+                else:
+                    location = classes.Location(line[0], line[1], line[2], line[3], line[4])
                 self.chestCardItemList.append(location)
+
+    def loadWarriorWyht(self):
+        self.loadAddressTxtFile(self.warriorWyhtFile, self.warriorWyhtList)
 
     def loadLevelBonusCards(self):
         with open(self.levelBonusCardFile, 'r') as file:
