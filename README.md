@@ -1,8 +1,8 @@
-# LKrandomizer v.4
+# LKrandomizer v0.5
 ~~~
 Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
-8/14/2019
+8/19/2019
 ~~~
 ## Description
 
@@ -10,13 +10,13 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ## How to Use This Program
 
-* Download and extract LKrandomizer_v.4DOWNLOAD.rar
+* Download and extract LKrandomizer_v0.5DOWNLOAD.rar
 * Keep LKrandomizer.exe and data folder in same directory
 * Run LKrandomizer.exe
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
 * Choose the options you want to include
 * Input a custom seed or leave it random
-* Seeds must be between one to ten alphanumeric characters
+* Seeds must be between one to eight alphanumeric characters
 * Press 'Start Randomization' button
 * The button will turn to yellow, indicating your .iso is being copied and patched
 * A message box will pop up once complete
@@ -24,7 +24,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ## Features
 
-* Mix and match randomization options: starting deck, chest cards, shop cards, enemy attributes
+* Mix and match randomization options: starting deck, chest cards, shop cards, key items, etc.
 * Main levels and side missions included in randomization.
 * Difficulty options: deactivated deck points, no escaping battles
 * Seed displayed in-game as default player name
@@ -44,13 +44,13 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ### Key Items
 
-* Must have randomized chests and/or randomized hidden cards active to randomize key items
-* All 15 items in the game are randomly placed in an accessible location (chest or hidden card)
+* Must have randomized chests active to randomize key items
+* All 15 items in the game are randomly placed in an accessible location (every seed is beatable)
 ~~~
 Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wyht, Red Candle, Blue Candle, Green Candle, Yellow Candle, Old Sheet Music, Stone of Cleansing, White Gem, Black Gem, Stone of Darkness, Necklace of the Pharaoh
 ~~~
+* The original item location (including chests, reward for beating Mind Flayer, and Warrior of Wyht key giver) will have randomized contents
 * The side levels and elemental temples may contain items
-* Currently you can still get the Shayel Key from beating Mind Flayer, in addition to finding it in a chest. Same for Key of Castle Wyht given by soldier.
 * The herb trees in Rohbach are deactivated, to complete the level you must have the 3 herbs in your inventory and reach the last herb tree
 * After using an item, or leaving a level, all items stay in your inventory
 * After completing a level, you can reenter it anytime so that you can't miss items
@@ -76,14 +76,13 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 
   All random options must be the same for the same result, but the difficulty options will not impact randomization.
   
-  
 * Are the fairy chests randomized?
 
   Not yet.
   
 * Is it possible to start with an unviable deck?
 
-  Rare, but yes.
+  Yes, but rare.
   
 * Why are some enemy attributes not randomized?
 
@@ -91,10 +90,12 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 
 ## Known Issues/Bugs
 
-* The cards and key given by the soldiers in Castle Wyht are not randomized
+* The text when talking to a Warrior of Wyht has original card message
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
 * Key items placed in non-vanilla key item chests show wrong model
 * Cards placed in key item chests will not have a model
+* Flayer Spawn item always shows shayel key model
+* Warrior of Wyht item always shows wyht key model 
 * Key item inventory will carry between save games/new games, need to reset to empty inventory
 * Pause menu only shows first 5 key items
 
