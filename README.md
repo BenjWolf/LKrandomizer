@@ -4,6 +4,7 @@ Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
 8/19/2019
 ~~~
+## [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.5/LKrandomizer_v0.5DOWNLOAD.rar)
 ## Description
 
 This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with the card pickups randomized.
