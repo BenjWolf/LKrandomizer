@@ -57,6 +57,7 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 * After completing a level, you can reenter it anytime so that you can't miss items
 * Key items are not saved to memory card, so use save states if you want to save your game
 * The pause menu will only show 5 of your items, so take notes
+* 'Allow hidden cards to be items' option: Includes hidden cards in pool of locations items can appear (use with caution due to at least one instance of softlock occuring)
 
 ### Difficulty
 
@@ -99,6 +100,7 @@ Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dr
 * Warrior of Wyht item always shows wyht key model 
 * Key item inventory will carry between save games/new games, need to reset to empty inventory
 * Pause menu only shows first 5 key items
+* With 'Allow hidden cards to be items': possibility of softlock when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
 
 ## Special Thanks
 
