@@ -11,7 +11,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ## How to Use This Program
 
-* Download and extract LKrandomizer_v0.5DOWNLOAD.rar
+* Download and extract LKrandomizer_v0.6DOWNLOAD.rar
 * Keep LKrandomizer.exe and data folder in same directory
 * Run LKrandomizer.exe
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
@@ -26,10 +26,10 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 ## Features
 
 * Mix and match randomization options: starting deck, chest cards, shop cards, key items, etc.
-* Main levels and side missions included in randomization.
+* Main levels and side quests included in randomization.
 * Difficulty options: deactivated deck points, no escaping battles
 * Seed displayed in-game as default player name
-* Output log with descriptions of starting deck, chest contents, etc.
+* Spoiler log with descriptions of starting deck, chest contents, etc.
 
 ## Option Descriptions
 
@@ -66,11 +66,8 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 ### Other
 
-* Remove summon animations: Only select this option if you are OK with minor gameplay changes. Changes damage dealing summon cards into weapon cards.
-The affect of the attack is the same, but the summon cutscene does not play and Katia does not transform into the creature. This option also affects the cards used by Helena and Thalnos.
-~~~
-Red Dragon, Sand Worm, Sasquatch, Wraith, Flayer Spawn, Elephant King, Zombie Dragon, Giant Crab, Lycanthrope, Necromancer, Birdman, Archer Tree, Blood Bush, Fire Gargoyle, Chimera, Venus Spider, Elephant
-~~~
+* LKII card changes: Replaces stone cost, attack power, etc. to match the card stats of Lost Kingdoms II. Some cards are buffed, others are nerfed. Wraith, Flayer Spawn, Lycanthrope, Birdman, Archer Tree, Blood Bush are now weapon cards. Read ??? for the full list of changes.
+* LKII enemy changes: Replaces HP, defense, attack power to match the enemy stats of Lost Kingdoms II. In general, enemies will do more damage. Read ??? for the full list of changes.
 
 ## F.A.Q.
 
