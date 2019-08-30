@@ -1,0 +1,360 @@
+Skeleton
+Def: 18 -> 8
+Atk1: 5 -> 18
+Atk2: 7 -> 21
+
+Ghost Armor
+Stone: 5 -> 4
+Uses: 3 -> 2
+Atk1: 24 -> 32
+
+Red Dragon
+Stone: 14 -> 10
+Atk1: 60 -> 70
+
+Golden Goose
+Stone: 8 -> 4
+HP: 30 -> 60
+Def: 30 -> 15
+
+Lizardman
+Stone: 1 -> 2
+Atk1: 15 -> 18
+
+Mandragora
+Atk1: 24 -> 32
+
+Red Lizard
+Stone: 1 -> 3
+Uses: 3 -> 2
+Atk1: 15 -> 24
+
+Unicorn
+
+Hobgoblin
+Stone: 3 -> 1
+HP: 20 -> 35
+Def: 2 -> 6
+Atk1: 6 -> 15
+Atk2: 10 -> 17
+
+Sand Golem
+Stone: 5 -> 7
+
+Jack-O-Lantern
+Atk1: 45 -> 52
+
+Man Trap
+Stone: 3 -> 1
+Atk1: 10 -> 16
+
+Sand Worm
+
+Mummy
+Atk1: 16 -> 20
+
+Cockatrice
+Atk1: 18 -> 15
+
+Sasquatch
+Atk1: 40 -> 60
+
+Wraith
+Type: Summon -> Weapon
+Uses: 1 -> 2
+Atk1: 18 -> 17
+
+Orc
+Stone: 2 -> 3
+Atk1: 21 -> 31
+
+Fairy
+
+Mind Flayer
+Stone: 18 -> 14
+
+Catoblepas
+Stone: 8 -> 5
+
+Kraken
+Atk1: 80 -> 60
+
+Water Hopper
+Atk1: 7 -> 14
+
+Fenril
+
+Lich
+Atk1: 20 -> 24
+
+Carbuncle
+Stone: 1 -> 4
+Atk1: 6 -> 12
+
+Flayer Spawn
+Type: Summon -> Weapon
+Uses: 1 -> 2
+Atk1: 16 -> 18
+
+Elephant King
+
+Zombie Dragon
+
+Fire Golem
+
+Running Bird
+
+Giant Crab
+Stone 5 -> 2
+Atk1: 8 -> 20
+
+Banshee
+
+Land Shark
+Def: 12 -> 9
+Atk1: 18 -> 20
+
+Berserker
+Stone: 7 -> 5
+HP: 75 -> 50
+Atk1: 18 -> 21
+
+Flying Ray
+
+Demon Hound
+Def: 8 -> 0
+Atk2: 22 -> 18
+
+Behemoth
+Atk1: 79 -> 84
+
+Mole Monster
+
+Maelstrom
+Atk1: 4 -> 42
+
+Lycanthrope
+Stone: 5 -> 6
+Type: Summon -> Weapon
+Uses: 1 -> 2
+Atk1: 30 -> 40
+
+Sand Beetle
+Stone: 6 -> 5
+Def: 20 -> 13
+
+Necromancer
+Atk1: 46 -> 35
+
+Great Turtle
+Def: 52 -> 16
+Atk1: 45 -> 54
+
+Golden Butterfly
+
+Ghoul
+
+Treant
+Def: 20 -> 2
+
+Sea Monk
+Stone: 8 -> 10
+
+Crystal Rose
+Atk1: 18 -> 24
+
+Larval Fly
+
+Dark Raven
+Uses: 3 -> 4
+Atk1: 10 -> 14
+
+Black Dragon
+Def: 24 -> 13
+Atk1: 45 -> 50
+Atk2: 60 -> 54
+
+Wizard
+Stone: 5 -> 6
+Def: 12 -> 3
+
+Dragonoid
+Stone:4 -> 3
+
+Giant Bee
+
+Birdman
+Type: Summon -> Weapon
+Uses: 1 -> 2
+
+Will-O-Wisp
+Atk1: 24 -> 35
+
+Archer Tree
+Stone: 4 -> 3
+Type: Summon -> Weapon
+Uses: 1 -> 3
+Atk1: 10 -> 25
+
+Stone Head
+Atk1: 53 -> 36
+
+Blood Bush
+Type: Summon -> Weapon
+Uses: 1 -> 2
+
+Efreet
+Stone: 6 -> 4
+Atk1: 48 -> 30
+
+Dragon Knight
+Uses: 2 -> 3
+Atk1: 28 -> 36
+
+Demon Fox
+Atk1: 92 -> 95
+
+Juggernaut
+HP: 60 -> 50
+Def: 18 -> 0
+
+Fire Gargoyle
+Atk1: 0 -> 52
+
+Great Demon
+Uses: 2 -> 3
+
+Evil Eye
+HP: 30 -> 48
+Def: 32 -> 12
+
+Blue Dragon
+
+Griffin
+
+Tiger Mage
+Stone: 5 -> 6
+HP: 64 -> 75
+Def: 16 -> 12
+Atk1: 16 -> 28
+
+Hydra
+
+Siren
+HP: 36 -> 60
+Def: 16 -> 6
+Atk1: 12 -> 7
+
+Chimera
+Stone: 6 -> 7
+Atk1: 36 -> 65
+
+Rheebus
+
+Scythe Beast
+Stone: 1 -> 2
+Atk: 7 -> 12
+
+Kitty Trap
+Stone: 2 -> 5
+HP: 10 -> 20
+Atk1: 15 -> 25
+
+Night Mare
+Atk1: 20 -> 25
+
+Golden Phoenix
+HP: 30 -> 240
+Def 80 -> 12
+
+White Tiger
+
+Venus Spider
+Atk1: 12 -> 15
+
+Vampire
+Stone: 8 -> 9
+
+Sphinx
+Stone: 8 -> 10
+Uses: 1 -> 2
+Atk1: 48 -> 55
+
+Puppet Master
+
+Plague Rat
+
+Hand of Pain
+
+Whip Worm
+Stone: 3 -> 7
+Def: 32 -> 8
+Atk1: 12 -> 16
+
+Trickster
+Stone: 7 -> 8
+HP: 60 -> 50
+Atk1: 12 -> 20
+
+Caterpoker
+Stone: 6 -> 4
+HP: 48 -> 50
+Atk1: 16 -> 22
+
+Beelzebub
+
+Ice Golem
+
+MegaMandragora -> King Mandragora
+Atk1: 60 -> 55
+
+Basilisk
+
+Larval Fly
+HP: 12 -> 50
+Def: 20 -> 10
+
+Water Bird
+
+Demon Skeleton
+HP: 82 -> 120
+Def: 20 -> 10
+
+Vampire Bush
+HP: 45 -> 60
+
+Elephant
+Atk1: 25 -> 40
+
+Goblin Lord
+Stone: 7 -> 5
+HP: 20 -> 60
+
+Cyclops
+
+Steel Skeleton
+Stone: 12 -> 10
+HP: 60 -> 240
+Def: 48 -> 12
+Atk1: 20 -> 25
+Atk2: 30 -> 35
+
+Chaos Knight
+Stone: 7 -> 6
+
+Decoy Pillar
+Stone: 3 -> 9
+HP: 80 -> 180
+Def: 80 -> 20
+
+Doppelganger
+HP: 300 -> 120
+Def: 20 -> 15
+
+Hand of Fire
+
+Venom Lizard
+Uses: 4 -> 3
+
+God of Destruction
+Stone: 26 -> 12

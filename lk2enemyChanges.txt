@@ -1,0 +1,366 @@
+Skeleton
+Def: 18 -> 8
+Atk1: 10 -> 18
+Atk2: 16 -> 21
+
+Ghost Armor
+Def: 20 -> 10
+Atk1: 12 -> 28
+Atk2: 18 -> 35
+
+Red Dragon
+HP: 200 -> 180
+Def: 24 -> 15
+Atk1: 20 -> 38
+Atk2: 45 -> 48
+
+Golden Goose
+HP: 30 -> 60
+Def: 30 -> 15
+
+Lizardman
+Atk1: 10 -> 18
+Atk2: 15 -> 22
+
+Mandragora
+Atk1: 24 -> 32
+
+Red Lizard
+Def: 8 -> 4
+Atk1: 11 -> 20
+Atk2: 15 -> 25
+
+Hobgoblin
+HP: 20 -> 35
+Def: 2 -> 4
+Atk1: 6 -> 18
+Atk2: 10 -> 16
+
+Sand Golem
+Def: 14 -> 11
+Atk1: 10 -> 20
+Atk2: 8 -> 18
+
+Jack-O-Lantern
+
+Man Trap
+Atk1: 10 -> 16
+
+Sand Worm
+HP: 250 -> 300
+Def: 32 -> 10
+Atk1: 20 -> 30
+Atk2: 15 -> 18
+
+Mummy
+HP: 34 -> 68
+Def: 10 -> 13
+
+Cockatrice
+HP: 76 -> 96
+Def: 12 -> 6
+Atk1: 8 -> 18
+
+Sasquatch
+Def: 12 -> 6
+Atk1: 20 -> 33
+Atk2: 24 -> 40
+
+Wraith
+
+Orc
+HP: 28 -> 40
+Atk1: 8 -> 15
+Atk2: 18 -> 24
+
+Mind Flayer
+Def: 18 -> 11
+Atk1: 5 -> 15
+
+Catoblepas
+
+Kraken
+HP: 400 -> 360
+Def: 24 -> 9
+Atk1: 64 -> 57
+Atk2: 80 -> 65
+
+Water Hopper
+HP: 22 -> 18
+Atk1: 5 -> 14
+Atk2: 7 -> 14
+
+Fenril
+HP: 64 -> 160
+Atk1: 26 -> 48
+Atk2: 20 -> 30
+
+Lich
+HP: 180 -> 280
+Def: 24 -> 10
+Atk1: 20 -> 32
+Atk2: 20 -> 40
+
+Carbuncle
+
+Flayer Spawn
+
+Elephant King
+Def: 32 -> 11
+Atk1: 24 -> 28
+Atk2: 30 -> 36
+
+Zombie Dragon
+Def: 18 -> 9
+Atk1: 18 -> 35
+
+Fire Golem
+Def: 14 -> 7
+Atk1: 10 -> 22
+
+Running Bird
+
+Giant Crab
+HP: 28 -> 50
+Def: 32 -> 11
+Atk1: 8 -> 16
+
+Banshee
+
+Land Shark
+Def: 12 -> 9
+Atk1: 18 -> 20
+
+Berserker
+Atk1: 18 -> 22
+Atk2: 24 -> 27
+
+Flying Ray
+Def: 8 -> 2
+
+Demon Hound
+Def: 8 -> 4
+Atk2: 22 -> 18
+
+Behemoth
+HP: 102 -> 180
+Atk1: 30 -> 35
+
+Mole Monster
+
+Maelstrom
+
+Lycanthrope
+HP: 20 -> 35
+Def: 4 -> 3
+Atk1: 6 -> 20
+Atk2: 8 -> 28
+
+Sand Beetle
+HP: 15 -> 24
+Def: 20 -> 8
+Atk: 20 -> 18
+
+Necromancer
+Atk1: 12 -> 35
+Atk2: 16 -> 26
+
+Great Turtle
+Def: 52 -> 14
+
+Golden Butterfly
+
+Ghoul
+HP: 28 -> 32
+Atk2: 24 -> 20
+
+Treant
+Def: 20 -> 14
+
+Crystal Rose
+HP: 24 -> 12
+Def: 15 -> 12
+Atk1: 28 -> 24
+
+Dark Raven
+Atk1: 8 -> 10
+
+Black Dragon
+HP: 180 -> 240
+Def: 24 -> 7
+Atk1: 45 -> 35
+Atk2: 60 -> 42
+
+Wizard
+HP: 68 -> 42
+Def: 12 -> 3
+Atk1: 4 -> 10
+
+Dragonoid
+HP: 28 -> 32
+Atk1: 8 -> 20
+
+Giant Bee
+
+Birdman
+HP: 24 -> 64
+Def: 4 -> 6
+Atk1: 18 -> 24
+
+Will-O-Wisp
+
+Archer Tree
+Atk1: 6 -> 17
+
+Stone Head
+HP: 75 -> 50
+Def: 20 -> 8
+Atk1: 12 -> 15
+
+Blood Bush
+
+Efreet
+HP: 65 -> 100
+Def: 27 -> 11
+Atk1: 24 -> 35
+
+Dragon Knight
+Def: 18 -> 10
+Atk1: 20 -> 28
+
+Demon Fox
+HP: 400 -> 250
+Def: 24 -> 10
+Atk1: 30 -> 35
+
+Juggernaut
+Atk1: 18 -> 22
+
+Fire Gargoyle
+HP: 40 -> 73
+Atk1: 12 -> 40
+
+Great Demon
+HP: 62 -> 110
+Def: 20 -> 10
+Atk1: 16 -> 22
+
+Evil Eye
+Def: 32 -> 12
+
+Griffin
+
+Tiger Mage
+HP: 38 -> 75
+Atk1: 16 -> 28
+
+Hydra
+Def: 24 -> 15
+
+Siren
+HP: 36 -> 60
+Def: 16 -> 6
+Atk1: 12 -> 7
+
+Chimera
+HP: 80 -> 160
+Def: 12 -> 5
+Atk1: 24 -> 36
+
+Scythe Beast
+Atk1: 7 -> 16
+
+Kitty Trap
+Atk1: 15 -> 7
+
+Night Mare
+
+White Tiger
+HP: 400 -> 320
+Def: 24 -> 13
+
+Venus Spider
+Atk1: 8 -> 22
+
+Vampire
+
+Sphinx
+HP: 160 -> 190
+Def: 18 -> 11
+
+Puppet Master
+
+Plague Rat
+Atk1: 3 -> 8
+
+Hand of Pain
+
+Whip Worm
+HP: 24 -> 75
+Def: 32 -> 10
+
+Trickster
+Atk1: 12 -> 22
+
+Caterpoker
+Def: 8 -> 4
+Atk1: 16 -> 19
+
+Beelzebub
+
+Ice Golem
+HP: 120 -> 160
+Def: 38 -> 10
+Atk1: 16 -> 37
+Atk2: 8 -> 42
+
+MegaMandragora -> King Mandragora
+Atk1: 48 -> 55
+
+Basilisk
+HP: 60 -> 32
+Def: 10 -> 6
+Atk1: 18 -> 20
+Atk2: 24 -> 25
+
+Larval Fly
+HP: 12 -> 50
+Def: 20 -> 10
+Atk1: 15 -> 18
+
+Demon Skeleton
+Def: 20 -> 8
+
+Vampire Bush
+
+Elephant
+HP: 64 -> 42
+Atk1: 20 -> 30
+Atk2: 28 -> 32
+
+Goblin Lord
+HP: 20 -> 60
+Atk1: 6 -> 17
+Atk2: 10 -> 21
+
+Cyclops
+Atk1: 10 -> 15
+
+Steel Skeleton
+HP: 60 -> 180
+Def: 48 -> 13
+Atk1: 20 -> 30
+Atk2: 30 -> 38
+
+Chaos Knight
+HP: 96 -> 150
+Def: 40 -> 12
+Atk1: 15 -> 25
+Atk2: 24 -> 35
+
+Hand of Fire
+
+Venom Lizard
+Atk2: 16 -> 20
+
+God of Destruction
