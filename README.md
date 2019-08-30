@@ -1,10 +1,10 @@
-# LKrandomizer v0.5
+# LKrandomizer v0.6
 ~~~
 Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
-8/19/2019
+8/29/2019
 ~~~
-## [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.5/LKrandomizer_v0.5DOWNLOAD.rar)
+### [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.6/LKrandomizer_v0.6DOWNLOAD.rar)
 ## Description
 
 This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with the card pickups randomized.
@@ -66,8 +66,8 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 ### Other
 
-* LKII card changes: Replaces stone cost, attack power, etc. to match the card stats of Lost Kingdoms II. Some cards are buffed, others are nerfed. Wraith, Flayer Spawn, Lycanthrope, Birdman, Archer Tree, Blood Bush are now weapon cards. Read ??? for the full list of changes.
-* LKII enemy changes: Replaces HP, defense, attack power to match the enemy stats of Lost Kingdoms II. In general, enemies will do more damage. Read ??? for the full list of changes.
+* LKII card changes: Replaces stone cost, attack power, etc. to match the card stats of Lost Kingdoms II. Some cards are buffed, others are nerfed. Wraith, Flayer Spawn, Lycanthrope, Birdman, Archer Tree, Blood Bush are now weapon cards. Read [here](https://github.com/BenjWolf/LKrandomizer/blob/master/lk2cardChanges.txt) for the full list of changes.
+* LKII enemy changes: Replaces HP, defense, attack power to match the enemy stats of Lost Kingdoms II. In general, enemies will do more damage. Read [here](https://github.com/BenjWolf/LKrandomizer/blob/master/lk2enemyChanges.txt) for the full list of changes.
 
 ## F.A.Q.
 
