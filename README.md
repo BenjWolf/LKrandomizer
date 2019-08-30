@@ -89,6 +89,7 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 ## Known Issues/Bugs
 
+* One of the 'Grenfoel Church' bonus draw cards is not randomized
 * With seeds of four characters or less: the default playername is not fully overwritten
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
 * Key items placed in non-vanilla key item chests show wrong model
