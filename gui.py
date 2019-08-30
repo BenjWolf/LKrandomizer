@@ -13,7 +13,7 @@ class GUI:
         self.masterWindow.resizable('false', 'false')
         self.seedGenInstance = seedGen.SeedGenerator()
         self.filePath = savedFilePath
-        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'itemOption': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'summonCardChecked': tk.BooleanVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
+        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'itemOption': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'lk2CardChecked': tk.BooleanVar(), 'lk2EnemyChecked': tk.BooleanVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
         self.keyItemsButton = tk.Checkbutton()
         self.itemOption = tk.Checkbutton()
         self.makeFileFrame()
@@ -101,8 +101,11 @@ class GUI:
         otherLabel.pack(anchor='w')
 
         # Check buttons
-        summonCardButton = tk.Checkbutton(middleFrame, text='Remove summon animations', variable=self.widgetVars['summonCardChecked'])
-        summonCardButton.pack(anchor='w')
+        lk2CardButton = tk.Checkbutton(middleFrame, text='LKII card changes', variable=self.widgetVars['lk2CardChecked'])
+        lk2CardButton.pack(anchor='w')
+
+        lk2EnemyButton = tk.Checkbutton(middleFrame, text='LKII enemy changes', variable=self.widgetVars['lk2EnemyChecked'])
+        lk2EnemyButton.pack(anchor='w')
 
     def makeRightFrame(self):
         # rightmost frame

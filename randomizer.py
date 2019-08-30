@@ -8,12 +8,10 @@ class Randomizer:
     zeroBytes = bytes(b'\x00\x00')
     cardGetByte = b'\x66'
     itemGetByte = b'\x65'
-    heavyWeaponBytes = bytes(b'\x05')  # todo assign this in data file
     nopCode = bytes(b'\x60\x00\x00\x00')
 
     def __init__(self, seedVal):
-        self.seedVal = seedVal
-        random.seed(a=self.seedVal)  # seed the random module
+        random.seed(a=seedVal)  # seed the random module
         self.cardList = list()  # member: card object
         self.outputDict = dict()  # key: address val: randomized value
         self.optionLog = 'Options:\n'
@@ -106,8 +104,8 @@ class Randomizer:
 
     def randomizeLevelBonusCards(self, levelBonusList):
         self.optionLog += 'Randomized level bonus cards\n'
-        for cardSlot in levelBonusList:  # cardSlot: [memory address,...]
-            for address in cardSlot:
+        for levelBonusSlot in levelBonusList:  # cardSlot: [memory address,...]
+            for address in levelBonusSlot.adresses:
                 card = self.getRandomCard()
                 self.outputDict[address] = card.cardID
 
@@ -147,10 +145,15 @@ class Randomizer:
         for address in deckPointsList:
             self.outputDict[address] = self.zeroBytes
 
-    def removeSummonAnimations(self, summonList):
-        self.optionLog += 'Removed summon animations\n'
-        for summon in summonList:  # member: memory address
-            self.outputDict[summon.address] = summon.attackType
+    def makeLK2CardChanges(self, lk2CardChangeList):
+        self.optionLog += 'LKII card changes\n'
+        for replacement in lk2CardChangeList:
+            self.outputDict[replacement.address] = replacement.newValue
+
+    def makeLK2EnemyChanges(self, lk2EnemyChangeList):
+        self.optionLog += 'LKII enemy changes\n'
+        for replacement in lk2EnemyChangeList:
+            self.outputDict[replacement.address] = replacement.newValue
 
     def fixForItems(self):
         itemFixDict = {int(b'8BDF4', 16): self.nopCode,  # remove items load out

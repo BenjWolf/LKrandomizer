@@ -3,18 +3,23 @@ import gui
 import randomizer
 import fileOutput
 import tkinter as tk
+import tkinter.messagebox as messagebox
 
 
 class Mediator:
     # constants
-    versionName = 'LK Randomizer v0.5'
+    versionName = 'LK Randomizer v0.6'
 
     def __init__(self):
-        self.loader = fileLoad.FileLoad()
-        root = tk.Tk()  # root to contain GUI
-        savedFilePath = self.loader.loadSavedFilePath()  # user's file path for ISO
-        self.gui = gui.GUI(self, root, savedFilePath, self.versionName)
-        root.mainloop()  # start GUI
+        try:
+            self.loader = fileLoad.FileLoad()
+        except IOError:
+            messagebox.showerror('Error', 'Missing data files')
+        else:
+            root = tk.Tk()  # root to contain GUI
+            savedFilePath = self.loader.loadSavedFilePath()  # user's file path for ISO
+            self.gui = gui.GUI(self, root, savedFilePath, self.versionName)
+            root.mainloop()  # start GUI
 
     def startRandomizer(self, widgetVals):
         try:
@@ -42,8 +47,10 @@ class Mediator:
                 randInstance.removeEscapeBattle()
             if widgetVals['deckPointChecked']:
                 randInstance.deactivateDeckPoints(self.loader.deckPointList)
-            if widgetVals['summonCardChecked']:
-                randInstance.removeSummonAnimations(self.loader.summonList)
+            if widgetVals['lk2CardChecked']:
+                randInstance.makeLK2CardChanges(self.loader.lk2CardChangeList)
+            if widgetVals['lk2EnemyChecked']:
+                randInstance.makeLK2EnemyChanges(self.loader.lk2EnemyChangeList)
             randOutputTup = randInstance.getRandomizerOutput()
             self.fileOutput(widgetVals['fileInput'], widgetVals['seedInput'], widgetVals['genIsoSelected'], widgetVals['includeSpoilersSelected'], randOutputTup)
             self.gui.showDoneMessage()
