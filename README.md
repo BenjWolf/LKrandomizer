@@ -89,12 +89,13 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 ## Known Issues/Bugs
 
-* The text when talking to a Warrior of Wyht has original card message
+* With seeds of four characters or less: the default playername is not fully overwritten
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
 * Key items placed in non-vanilla key item chests show wrong model
 * Cards placed in key item chests will not have a model
 * Flayer Spawn item always shows shayel key model
 * Warrior of Wyht item always shows wyht key model 
+* The text when talking to a Warrior of Wyht has original card message
 * Key item inventory will carry between save games/new games, need to reset to empty inventory
 * Pause menu only shows first 5 key items
 * With 'Allow hidden cards to be items': possibility of softlock when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
