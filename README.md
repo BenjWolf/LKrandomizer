@@ -77,6 +77,7 @@ Full Random:
 Balanced:
 * The cards are grouped into 4 levels of rareness (determined in-game). When randomizing card pick-ups, the randomizer looks up what card you get in the original game and chooses a random card of the same rarity. For instance, if a chest gives you a Dragon Knight in the original game, it will be a random level 2 rareness card after randomization.
 * Starting deck: Keeps original card distribution pattern (3x 3x 1x 1x 2x 1x 1x) and has a select list of cards to choose for each slot, trying to remain close to the utility of the original deck.
+
   3x of (lizardman, red lizard, mummy, orc, or ghoul)
   
   3x of (skeleton, hobgoblin, or man trap)
