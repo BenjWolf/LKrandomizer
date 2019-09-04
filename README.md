@@ -1,10 +1,10 @@
-# LKrandomizer v0.6
+# LKrandomizer v0.7
 ~~~
 Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
 8/29/2019
 ~~~
-### [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.6/LKrandomizer_v0.6DOWNLOAD.rar)
+### [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.7/LKrandomizer_v0.7DOWNLOAD.rar)
 ## Description
 
 This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with the card pickups randomized.
@@ -35,7 +35,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ### Randomization
 
-* Starting deck: Keeps original card distribution pattern (3x 3x 1x 1x 2x 1x 1x) but randomizes cards
+* Starting deck: Randomizes 12 cards for your starting deck (see randomization style for more details)
 * Chest cards: Card received from opening chest is randomized (includes coffin and sarcophagus)
 * Hidden cards: Card hidden on the ground/under obstacles is randomized
 * 'Level Bonus' cards: The face down cards you select when completing a level are randomized
@@ -69,6 +69,22 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 * LKII card changes: Replaces stone cost, attack power, etc. to match the card stats of Lost Kingdoms II. Some cards are buffed, others are nerfed. Wraith, Flayer Spawn, Lycanthrope, Birdman, Archer Tree, Blood Bush are now weapon cards. Read [here](https://github.com/BenjWolf/LKrandomizer/blob/master/lk2cardChanges.txt) for the full list of changes.
 * LKII enemy changes: Replaces HP, defense, attack power to match the enemy stats of Lost Kingdoms II. In general, enemies will do more damage. Read [here](https://github.com/BenjWolf/LKrandomizer/blob/master/lk2enemyChanges.txt) for the full list of changes.
 
+### Randomization Style
+
+Full Random:
+* Each card has same chance of being picked. For example, a chest in the first level is equally likely to be a Hobgoblin or God of Destruction. Unlike previous versions, it is now possible to get 12 unique cards in the starting deck. 
+
+Balanced:
+* The cards are grouped into 4 levels of rareness (determined in-game). When randomizing card pick-ups, the randomizer looks up what card you get in the original game and chooses a random card of the same rarity. For instance, if a chest gives you a Dragon Knight in the original game, it will be a random level 2 rareness card after randomization.
+* Starting deck: Keeps original card distribution pattern (3x 3x 1x 1x 2x 1x 1x) and has a select list of cards to choose for each slot, trying to remain close to the utility of the original deck.
+  3x of (lizardman, red lizard, mummy, orc, or ghoul)
+  3x of (skeleton, hobgoblin, or man trap)
+  1x of (fairy, rheebus)
+  1x of (fire golem, lycanthrope, elephant, or chimera)
+  2x of (dark raven, scythe beast, or flying ray)
+  1x of (wraith, giant crab, birdman, or venus spider)
+  1x of (ghost armor, basilisk, dragonoid, dragon knight, or great demon)
+
 ## F.A.Q.
 
 * Will the same seed but different options have the same cards?
@@ -89,8 +105,6 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 ## Known Issues/Bugs
 
-* One of the 'Grenfoel Church' bonus draw cards is not randomized
-* With seeds of four characters or less: the default playername is not fully overwritten
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
 * With 'Allow hidden cards to be items': possibility of softlock when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
 * Key items placed in non-vanilla key item chests show wrong model
