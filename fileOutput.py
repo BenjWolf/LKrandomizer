@@ -21,6 +21,10 @@ class FileOutput:
         shutil.copy(isoPath, self.newISO)
 
     def changePlayerNameToSeed(self, seed):
+        self.writeAddresses[self.playerNameAddress + 1] = b'\x00'  # overwrite existing default name 'Katia'
+        self.writeAddresses[self.playerNameAddress + 2] = b'\x00'
+        self.writeAddresses[self.playerNameAddress + 3] = b'\x00'
+        self.writeAddresses[self.playerNameAddress + 4] = b'\x00'
         self.writeAddresses[self.playerNameAddress] = seed.encode('utf-8')  # encode seed to binary
 
     def writeToISO(self, randomizedDict):

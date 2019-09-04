@@ -1,6 +1,7 @@
 import fileLoad
 import gui
 import randomizer
+import balancedRandomizer
 import fileOutput
 import tkinter as tk
 import tkinter.messagebox as messagebox
@@ -8,7 +9,7 @@ import tkinter.messagebox as messagebox
 
 class Mediator:
     # constants
-    versionName = 'LK Randomizer v0.6'
+    versionName = 'LK Randomizer v0.7'
 
     def __init__(self):
         try:
@@ -28,10 +29,12 @@ class Mediator:
         except IOError:
             self.gui.showISOErrorMessage()
         else:
-            randInstance = randomizer.Randomizer(widgetVals['seedInput'])
-            randInstance.setCardsList(self.loader.cardList)  # pass card list to randomizer
+            if widgetVals['randomStyle'] == 1:  # full random
+                randInstance = randomizer.Randomizer(widgetVals['seedInput'], self.loader.cardList)
+            else:  # balanced random
+                randInstance = balancedRandomizer.BalancedRandomizer(widgetVals['seedInput'], self.loader.cardList)
             if widgetVals['startingDeckChecked']:
-                randInstance.randomizeStartingDeck(self.loader.startingDeckList)
+                randInstance.randomizeStartingDeck(self.loader.startingDeckFullRandomList, self.loader.startingDeckBalancedList, self.loader.startingInventoryASMDict)
             if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked'] or widgetVals['keyItemsChecked']:
                 randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], widgetVals['itemOption'], self.loader.itemList)
                 randInstance.randomizeWarriorWyhtCards(self.loader.warriorWyhtList)

@@ -48,17 +48,28 @@ class LevelBonusSlot:
     addresses (list of int16): iso offset of cards in slot
     originalCardID (byte): value we are replacing
     """
-    def __init__(self, adresses, originalCardID):
-        self.adresses = adresses
+    def __init__(self, addressList, originalCardID):
+        self.addressList = addressList
         self.originalCardID = originalCardID
 
 
-class ReplaceBytes:
+class AddressValue:
     """
-    Data that needs to be replaced on .iso
+    Data pair representing .iso address and either a new or original value
     address (int16): iso offset of value to be replaced
-    newValue (bytes): new value to write to .iso
+    value (bytes): new value to write to .iso or the original value
     """
-    def __init__(self, address, newValue):
+    def __init__(self, address, value):
         self.address = address
-        self.newValue = newValue
+        self.value = value
+
+
+class StartingDeckSlot:
+    """
+    A slot is made up of multiples of the same card. A slot may have 1 to 4 multiples.
+    addressList (list of int16): iso offset of cards in slot to be replaced
+    replaceCardList (list of byte): potential cardIDs to use in replacement
+    """
+    def __init__(self, addressList, replaceCardList):
+        self.addressList = addressList
+        self.replaceCardList = replaceCardList

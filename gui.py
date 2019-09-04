@@ -13,7 +13,7 @@ class GUI:
         self.masterWindow.resizable('false', 'false')
         self.seedGenInstance = seedGen.SeedGenerator()
         self.filePath = savedFilePath
-        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'itemOption': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'lk2CardChecked': tk.BooleanVar(), 'lk2EnemyChecked': tk.BooleanVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
+        self.widgetVars = {'fileInput': tk.StringVar(), 'startingDeckChecked': tk.BooleanVar(), 'chestCardsChecked': tk.BooleanVar(), 'hiddenCardsChecked': tk.BooleanVar(), 'levelBonusCardsChecked': tk.BooleanVar(), 'shopCardsChecked': tk.BooleanVar(), 'fairyCardsChecked': tk.BooleanVar(), 'enemyAttributesChecked': tk.BooleanVar(), 'keyItemsChecked': tk.BooleanVar(), 'itemOption': tk.BooleanVar(), 'escapeBattleChecked': tk.BooleanVar(), 'deckPointChecked': tk.BooleanVar(), 'lk2CardChecked': tk.BooleanVar(), 'lk2EnemyChecked': tk.BooleanVar(), 'randomStyle': tk.IntVar(), 'genIsoSelected': tk.BooleanVar(), 'includeSpoilersSelected': tk.BooleanVar(), 'seedInput': tk.StringVar()}
         self.keyItemsButton = tk.Checkbutton()
         self.itemOption = tk.Checkbutton()
         self.makeFileFrame()
@@ -85,7 +85,11 @@ class GUI:
         self.itemOption = tk.Checkbutton(middleFrame, text='Allow hidden cards to be items', variable=self.widgetVars['itemOption'], state='disabled')
         self.itemOption.pack(anchor='w')
 
+        # spacer
+        tk.Label(middleFrame, text='').pack()
+
         # Difficulty options
+
         difficultyLabel = tk.Label(middleFrame, text='Difficulty:')
         difficultyLabel.pack(anchor='w')
 
@@ -95,6 +99,9 @@ class GUI:
 
         deckPointButton = tk.Checkbutton(middleFrame, text='Deactivate deck points', variable=self.widgetVars['deckPointChecked'])
         deckPointButton.pack(anchor='w')
+
+        # spacer
+        tk.Label(middleFrame, text='').pack()
 
         # Other options
         otherLabel = tk.Label(middleFrame, text='Other:')
@@ -112,6 +119,21 @@ class GUI:
         rightFrame = tk.Frame(self.masterWindow, bd=14)
         rightFrame.pack(side='left')
 
+        # randomization style
+        randomizationStyleLabel = tk.Label(rightFrame, text='Randomization style: ')
+        randomizationStyleLabel.pack(anchor='w')
+
+        # radio buttons
+        fullRandomButton = tk.Radiobutton(rightFrame, text='Full random', variable=self.widgetVars['randomStyle'], value = 1)
+        fullRandomButton.select()
+        fullRandomButton.pack(anchor='w')
+
+        balancedButton = tk.Radiobutton(rightFrame, text='Balanced', variable=self.widgetVars['randomStyle'], value = 2)
+        balancedButton.pack(anchor='w')
+
+        # spacer
+        tk.Label(rightFrame, text='').pack()
+
         # seed frame
         seedFrame = tk.Frame(rightFrame)
         seedFrame.pack()
@@ -127,10 +149,10 @@ class GUI:
         newSeedButton = tk.Button(rightFrame, text='New Seed', command=lambda: self.setSeedInputRandom())
         newSeedButton.pack()
 
-        # output options
-        spacerLabel = tk.Label(rightFrame, text='')
-        spacerLabel.pack(pady=10)
+        # spacer
+        tk.Label(rightFrame, text='').pack()
 
+        # output options
         generationLabel = tk.Label(rightFrame, text='Output: ')
         generationLabel.pack(anchor='w')
 

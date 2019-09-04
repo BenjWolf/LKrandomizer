@@ -10,22 +10,26 @@ class Randomizer:
     itemGetByte = b'\x65'
     nopCode = bytes(b'\x60\x00\x00\x00')
 
-    def __init__(self, seedVal):
+    def __init__(self, seedVal, cardList):
         random.seed(a=seedVal)  # seed the random module
-        self.cardList = list()  # member: card object
+        self.cardList = cardList  # member: card object
         self.outputDict = dict()  # key: address val: randomized value
         self.optionLog = 'Options:\n'
+        self.writeRandomizationStyleToLog()
         self.spoilerLog = str()
 
-    def randomizeStartingDeck(self, startingDeckList):
+    def writeRandomizationStyleToLog(self):
+        self.optionLog += 'Full randomization style\n'
+
+    def randomizeStartingDeck(self, fullRandomDeckList, balancedDeckList, asmDict):
+        self.outputDict.update(asmDict)  # make asm changes first
         self.optionLog += 'Randomized starting deck\n'
         self.spoilerLog += 'Starting Deck: '
-        for cardSlot in startingDeckList:  # cardSlot: [memory address, memory address,...]
+        for cardSlot in fullRandomDeckList:  # cardSlot: [memory address, memory address,...]
             card = self.getRandomCard()
-            for address in cardSlot:
-                self.outputDict[address] = card.cardID
-            amount = str((len(cardSlot) - 1))
-            self.spoilerLog += (card.cardName + ' x' + amount + '. ')  # print card name
+            self.outputDict[cardSlot[0]] = card.cardID
+            self.outputDict[cardSlot[1]] = card.cardID
+            self.spoilerLog += (card.cardName + '. ')  # print card name
         self.spoilerLog += '\n\n'
 
     def randomizeChestCardItems(self, chestCardItemList, doChestCards, doHiddenCards, doKeyItems, doItemOption, itemID):
@@ -60,8 +64,7 @@ class Randomizer:
                 item = itemLocationDict[location.address]
                 self.buildItemOutput(location, item)
             else:  # put card there
-                card = self.getRandomCard()
-                self.buildCardOutput(location, card)
+                self.buildCardOutput(location)
         self.spoilerLog += '\n'
 
     def randomizeKeyItems(self, liveLocationList, itemID):
@@ -83,7 +86,8 @@ class Randomizer:
         self.spoilerLog += (
                     location.levelName + ' ' + location.description + ' has ' + item.itemName + ' [!]' + '\n')  # (Level name) (location) has (item name)
 
-    def buildCardOutput(self, location, card):
+    def buildCardOutput(self, location):
+        card = self.getRandomCard()
         cardBytes = card.interactID
         if location.originalType == 3:  # originally item location
             # append card-get to interactID
@@ -96,16 +100,16 @@ class Randomizer:
 
     def randomizeWarriorWyhtCards(self, warriorWyhtList):
         self.spoilerLog += 'Warrior of Wyht cards:\n'
-        for address in warriorWyhtList:
+        for member in warriorWyhtList:
             card = self.getRandomCard()
-            self.outputDict[address] = card.cardID
+            self.outputDict[member.address] = card.cardID
             self.spoilerLog += card.cardName + '. '  # print card name
         self.spoilerLog += '\n\n'
 
     def randomizeLevelBonusCards(self, levelBonusList):
         self.optionLog += 'Randomized level bonus cards\n'
         for levelBonusSlot in levelBonusList:  # cardSlot: [memory address,...]
-            for address in levelBonusSlot.adresses:
+            for address in levelBonusSlot.addressList:
                 card = self.getRandomCard()
                 self.outputDict[address] = card.cardID
 
@@ -113,10 +117,10 @@ class Randomizer:
         self.optionLog += 'Randomized shop cards\n'
         self.spoilerLog += 'Shop cards:\n'
         n = 0
-        for address in shopCardList:
+        for shopCard in shopCardList:
             n += 1
             card = self.getRandomCard()
-            self.outputDict[address] = card.cardID
+            self.outputDict[shopCard.address] = card.cardID
             self.spoilerLog += card.cardName + '. '  # print card name
             if n % 10 == 0:  # every tenth card start new line
                 self.spoilerLog += '\n'
@@ -125,9 +129,9 @@ class Randomizer:
     def randomizeFairyCards(self, fairyCardList):
         self.optionLog += 'Randomized red fairy rewards\n'
         self.spoilerLog += 'Red fairy rewards:\n'
-        for address in fairyCardList:
+        for fairyCard in fairyCardList:
             card = self.getRandomCard()
-            self.outputDict[address] = card.cardID
+            self.outputDict[fairyCard.address] = card.cardID
             self.spoilerLog += card.cardName + '. '  # print card name
 
     def randomizeAttributes(self, enemyAttributeList):
@@ -148,12 +152,12 @@ class Randomizer:
     def makeLK2CardChanges(self, lk2CardChangeList):
         self.optionLog += 'LKII card changes\n'
         for replacement in lk2CardChangeList:
-            self.outputDict[replacement.address] = replacement.newValue
+            self.outputDict[replacement.address] = replacement.value
 
     def makeLK2EnemyChanges(self, lk2EnemyChangeList):
         self.optionLog += 'LKII enemy changes\n'
         for replacement in lk2EnemyChangeList:
-            self.outputDict[replacement.address] = replacement.newValue
+            self.outputDict[replacement.address] = replacement.value
 
     def fixForItems(self):
         itemFixDict = {int(b'8BDF4', 16): self.nopCode,  # remove items load out
@@ -174,7 +178,8 @@ class Randomizer:
 
     def getRandomCard(self):
         index = random.randint(0, len(self.cardList) - 1)  # choose random index to pull from cardIDs
-        return self.cardList[index]
+        card = self.cardList[index]
+        return card
 
     def setCardsList(self, cardData):
         self.cardList = cardData
