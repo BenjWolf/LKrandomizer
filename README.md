@@ -11,7 +11,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 ## How to Use This Program
 
-* Download and extract LKrandomizer_v0.6DOWNLOAD.rar
+* Download and extract LKrandomizer_v0.7DOWNLOAD.rar
 * Keep LKrandomizer.exe and data folder in same directory
 * Run LKrandomizer.exe
 * Press 'Select .iso' button and choose a clean Lost Kingdoms disc image
@@ -57,7 +57,7 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 * After completing a level, you can reenter it anytime so that you can't miss items
 * Key items are not saved to memory card, so use save states if you want to save your game
 * The pause menu will only show 5 of your items, so take notes
-* 'Allow hidden cards to be items' option: Includes hidden cards in pool of locations items can appear (use with caution due to at least one instance of softlock occuring)
+* 'Allow hidden cards to be items' option: Includes hidden cards in pool of locations items can appear (use with caution due to at least one instance of game-breaking bug occuring)
 
 ### Difficulty
 
@@ -112,7 +112,7 @@ Balanced:
 ## Known Issues/Bugs
 
 * Key items placed in card chests/hidden cards still show a card model and have incorrect animation
-* With 'Allow hidden cards to be items': possibility of softlock when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
+* With 'Allow hidden cards to be items': possibility of character freeze (unable to move or pause) when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
 * Key items placed in non-vanilla key item chests show wrong model
 * Cards placed in key item chests will not have a model
 * Flayer Spawn item always shows shayel key model
