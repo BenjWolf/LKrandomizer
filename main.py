@@ -22,40 +22,40 @@ class Mediator:
             self.gui = gui.GUI(self, root, savedFilePath, self.versionName)
             root.mainloop()  # start GUI
 
-    def startRandomizer(self, widgetVals):
+    def startRandomizer(self, widgetVars):
         try:
-            if not self.loader.isGoodISO(widgetVals['fileInput']):  # test for good .iso Path
+            if not self.loader.isGoodISO(widgetVars.fileInput.get()):  # test for good .iso Path
                 raise IOError
         except IOError:
             self.gui.showISOErrorMessage()
         else:
-            if widgetVals['randomStyle'] == 1:  # full random
-                randInstance = randomizer.Randomizer(widgetVals['seedInput'], self.loader.cardList)
+            if widgetVars.randomStyle.get() == 1:  # full random
+                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict)
             else:  # balanced random
-                randInstance = balancedRandomizer.BalancedRandomizer(widgetVals['seedInput'], self.loader.cardList)
-            if widgetVals['startingDeckChecked']:
+                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict)
+            if widgetVars.startingDeckChecked.get():
                 randInstance.randomizeStartingDeck(self.loader.startingDeckFullRandomList, self.loader.startingDeckBalancedList, self.loader.startingInventoryASMDict)
-            if widgetVals['chestCardsChecked'] or widgetVals['hiddenCardsChecked'] or widgetVals['keyItemsChecked']:
-                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVals['chestCardsChecked'], widgetVals['hiddenCardsChecked'], widgetVals['keyItemsChecked'], widgetVals['itemOption'], self.loader.itemList)
+            if widgetVars.chestCardsChecked.get() or widgetVars.hiddenCardsChecked.get() or widgetVars.keyItemsChecked.get():
+                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVars.chestCardsChecked.get(), widgetVars.hiddenCardsChecked.get(), widgetVars.keyItemsChecked.get(), widgetVars.itemHiddenCardChecked.get(), self.loader.itemList)
                 randInstance.randomizeWarriorWyhtCards(self.loader.warriorWyhtList)
-            if widgetVals['levelBonusCardsChecked']:
+            if widgetVars.levelBonusCardsChecked.get():
                 randInstance.randomizeLevelBonusCards(self.loader.levelBonusList)
-            if widgetVals['shopCardsChecked']:
+            if widgetVars.shopCardsChecked.get():
                 randInstance.randomizeShopCards(self.loader.shopCardList)
-            if widgetVals['fairyCardsChecked']:
+            if widgetVars.fairyCardsChecked.get():
                 randInstance.randomizeFairyCards(self.loader.fairyCardList)
-            if widgetVals['enemyAttributesChecked']:
+            if widgetVars.enemyAttributesChecked.get():
                 randInstance.randomizeAttributes(self.loader.enemyAttributeList)
-            if widgetVals['escapeBattleChecked']:
+            if widgetVars.escapeBattleChecked.get():
                 randInstance.removeEscapeBattle()
-            if widgetVals['deckPointChecked']:
+            if widgetVars.deckPointChecked.get():
                 randInstance.deactivateDeckPoints(self.loader.deckPointList)
-            if widgetVals['lk2CardChecked']:
+            if widgetVars.lk2CardChecked.get():
                 randInstance.makeLK2CardChanges(self.loader.lk2CardChangeList)
-            if widgetVals['lk2EnemyChecked']:
+            if widgetVars.lk2EnemyChecked.get():
                 randInstance.makeLK2EnemyChanges(self.loader.lk2EnemyChangeList)
             randOutputTup = randInstance.getRandomizerOutput()
-            self.fileOutput(widgetVals['fileInput'], widgetVals['seedInput'], widgetVals['genIsoSelected'], widgetVals['includeSpoilersSelected'], randOutputTup)
+            self.fileOutput(widgetVars.fileInput.get(), widgetVars.seedInput.get(), widgetVars.genIsoSelected.get(), widgetVars.includeSpoilersSelected.get(), randOutputTup)
             self.gui.showDoneMessage()
 
     def fileOutput(self, isoPath, seed, genIso, includeSpoilers, randOutputTup):  # randOutputTup (randOutput dict, optionLog string, randLog string)

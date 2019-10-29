@@ -1,3 +1,6 @@
+import tkinter as tk
+
+
 class Card:
     """
     cardID (byte): when receiving card in menus
@@ -27,16 +30,16 @@ class Location:
     address (int16): iso offset of object to receive from interaction
     originalType (int): 1: chest card, 2: hidden card, 3: item chest, 4: item reward
     area (int): for key item logic
-    levelName (str)
+    levelID (int)
     description (str)
     originalInteractID (byte): value we are replacing
     typeAddress (int16)(optional): only used if interact address is not followed by type address in iso
     """
-    def __init__(self, address, originalType, area, levelName, description, originalInteractID, typeAddress=None):
+    def __init__(self, address, originalType, area, levelID, description, originalInteractID, typeAddress=None):
         self.address = address
         self.originalType = originalType
         self.area = area
-        self.levelName = levelName
+        self.levelID = levelID
         self.description = description
         self.originalInteractID = originalInteractID
         self.typeAddress = typeAddress
@@ -73,3 +76,41 @@ class StartingDeckSlot:
     def __init__(self, addressList, replaceCardList):
         self.addressList = addressList
         self.replaceCardList = replaceCardList
+
+
+class Level:
+    """
+    levelID (int)
+    levelName (str)
+    hints(list of str)
+    """
+    def __init__(self, levelID, levelName, hints):
+        self.levelID = levelID
+        self.levelName = levelName
+        self.hints = hints
+
+
+class WidgetVars:
+    """
+    Every tkinter Var object that needs to be passed from GUI to main
+    """
+    def __init__(self):
+        self.fileInput = tk.StringVar()
+        self.startingDeckChecked = tk.BooleanVar()
+        self.chestCardsChecked = tk.BooleanVar()
+        self.hiddenCardsChecked = tk.BooleanVar()
+        self.levelBonusCardsChecked = tk.BooleanVar()
+        self.shopCardsChecked = tk.BooleanVar()
+        self.fairyCardsChecked = tk.BooleanVar()
+        self.enemyAttributesChecked = tk.BooleanVar()
+        self.keyItemsChecked = tk.BooleanVar()
+        self.itemHintsChecked = tk.BooleanVar()
+        self.itemHiddenCardChecked = tk.BooleanVar()
+        self.escapeBattleChecked = tk.BooleanVar()
+        self.deckPointChecked = tk.BooleanVar()
+        self.lk2CardChecked = tk.BooleanVar()
+        self.lk2EnemyChecked = tk.BooleanVar()
+        self.randomStyle = tk.IntVar()
+        self.genIsoSelected = tk.BooleanVar()
+        self.includeSpoilersSelected = tk.BooleanVar()
+        self.seedInput = tk.StringVar()
