@@ -7,8 +7,8 @@ Child class of Randomizer
 
 class BalancedRandomizer(randomizer.Randomizer):
 
-    def __init__(self, seedVal, cardList):
-        super().__init__(seedVal, cardList)
+    def __init__(self, seedVal, cardList, levelList, locationList):
+        super().__init__(seedVal, cardList, levelList, locationList)
         self.rarityLists = dict()  # members: four lists of cards, one for each rarity level
         self.buildRarityLists()
 
@@ -36,21 +36,25 @@ class BalancedRandomizer(randomizer.Randomizer):
             self.spoilerLog += (card.cardName + ' x' + amount + '. ')  # print card name
         self.spoilerLog += '\n\n'
 
-    def buildCardOutput(self, location):
-        originalCard = self.getCardFromInteractID(location.originalInteractID)
-        if originalCard is None:
-            card = self.getRandomCard()
+    def randomizeLocations(self):
+        if self.IP is not None:  # items were placed
+            itemLocationDict = self.IP.getItemLocationDict()
         else:
-            card = self.getRandomCardFromRarity(originalCard.rarity)
-        cardBytes = card.interactID
-        if location.originalType == 3:  # originally item location
-            # append card-get to interactID
-            cardBytes += self.cardGetByte
-        if location.originalType == 4:  # originally shayel key or wyht key
-            self.outputDict[location.typeAddress] = self.cardGetByte
-        self.outputDict[location.address] = cardBytes  # pair up location and card interact ID
-        self.spoilerLog += (
-                location.levelName + ' ' + location.description + ' has ' + card.cardName + '\n')  # (Level name) (location) has (card name)
+            itemLocationDict = dict()
+        # build output dict and log
+        for location in self.liveLocationList:
+            if location in itemLocationDict.keys():  # item goes there
+                item = itemLocationDict[location]
+                self.buildItemOutput(location, item)
+            else:  # put card there
+                # compare to original card
+                originalCard = self.getCardFromInteractID(location.originalInteractID)
+                if originalCard is None:
+                    card = self.getRandomCard()
+                else:
+                    card = self.getRandomCardFromRarity(originalCard.rarity)
+                self.buildCardOutput(location, card)
+        self.spoilerLog += '\n'
 
     def randomizeWarriorWyhtCards(self, warriorWyhtList):
         self.spoilerLog += 'Warrior of Wyht cards:\n'

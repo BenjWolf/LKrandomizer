@@ -9,7 +9,7 @@ import tkinter.messagebox as messagebox
 
 class Mediator:
     # constants
-    versionName = 'LK Randomizer v0.7'
+    versionName = 'LK Randomizer v0.8'
 
     def __init__(self):
         try:
@@ -29,29 +29,52 @@ class Mediator:
         except IOError:
             self.gui.showISOErrorMessage()
         else:
+            # make instance of randomizer
             if widgetVars.randomStyle.get() == 1:  # full random
-                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict)
+                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.locationList)
             else:  # balanced random
-                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict)
+                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.locationList)
+            # starting deck
             if widgetVars.startingDeckChecked.get():
                 randInstance.randomizeStartingDeck(self.loader.startingDeckFullRandomList, self.loader.startingDeckBalancedList, self.loader.startingInventoryASMDict)
+            # chest cards, hidden cards, and items
+            if widgetVars.chestCardsChecked.get():
+                randInstance.doChestCards()
+            else:
+                randInstance.removeChests()
+            if widgetVars.hiddenCardsChecked.get():
+                randInstance.doHiddenCards()
+            else:
+                randInstance.removeHiddenCards()
+            if widgetVars.keyItemsChecked.get():
+                randInstance.doKeyItems(self.loader.itemList)
+            else:
+                randInstance.removeKeyItems()
             if widgetVars.chestCardsChecked.get() or widgetVars.hiddenCardsChecked.get() or widgetVars.keyItemsChecked.get():
-                randInstance.randomizeChestCardItems(self.loader.chestCardItemList, widgetVars.chestCardsChecked.get(), widgetVars.hiddenCardsChecked.get(), widgetVars.keyItemsChecked.get(), widgetVars.itemHiddenCardChecked.get(), self.loader.itemList)
+                randInstance.randomizeLocations()
                 randInstance.randomizeWarriorWyhtCards(self.loader.warriorWyhtList)
+            # level bonus cards
             if widgetVars.levelBonusCardsChecked.get():
                 randInstance.randomizeLevelBonusCards(self.loader.levelBonusList)
+            # shop cards
             if widgetVars.shopCardsChecked.get():
                 randInstance.randomizeShopCards(self.loader.shopCardList)
+            # fairy cards
             if widgetVars.fairyCardsChecked.get():
                 randInstance.randomizeFairyCards(self.loader.fairyCardList)
+            # enemy attributes
             if widgetVars.enemyAttributesChecked.get():
                 randInstance.randomizeAttributes(self.loader.enemyAttributeList)
+            # escape battle
             if widgetVars.escapeBattleChecked.get():
                 randInstance.removeEscapeBattle()
+            # deck point
             if widgetVars.deckPointChecked.get():
                 randInstance.deactivateDeckPoints(self.loader.deckPointList)
+            # lk2 card
             if widgetVars.lk2CardChecked.get():
                 randInstance.makeLK2CardChanges(self.loader.lk2CardChangeList)
+            # lk2 enemy
             if widgetVars.lk2EnemyChecked.get():
                 randInstance.makeLK2EnemyChanges(self.loader.lk2EnemyChangeList)
             randOutputTup = randInstance.getRandomizerOutput()

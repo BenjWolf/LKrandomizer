@@ -3,11 +3,11 @@ import random
 class ItemPlacer:
 
     def __init__(self, locationList, itemIDs):
-        self.locationList = list(locationList)  # copy of chest card item .csv / when items get placed in a location they are removed from here
+        self.locationList = list(locationList)  # available locations, when items get placed in a location they are removed from here
         self.allItems = itemIDs
-        self.itemList = list(itemIDs)  # member: item object / start with all items, removes until empty
+        self.liveItemList = list(itemIDs)  # member: item object / start with all items, removes until empty
         self.inventoryDict = dict()  # key: item name. value: bool (true when in inventory)
-        self.itemLocationDict = dict()  # items placed in location key: address from locationList, value: itemID
+        self.itemLocationDict = dict()  # items placed in location. key: location object, value: item object
         self.areaGraph = dict()  # area connections
         self.itemsInArea = dict()  # what items are in an area. key: area num. value: item name
         self.setDicts()
@@ -22,7 +22,7 @@ class ItemPlacer:
         for slot in self.inventoryDict:
             self.inventoryDict[slot] = False
         # add items that haven't been placed yet
-        for item in self.itemList:
+        for item in self.liveItemList:
             self.inventoryDict[item.itemName] = True
 
     def setDicts(self):
@@ -45,7 +45,7 @@ class ItemPlacer:
     def randomizeItemLocations(self):
         self.startInventory()
         # add set item list
-        while len(self.itemList) > 0:
+        while len(self.liveItemList) > 0:
             accessibleAreaList = list()
             accessibleAreaList.append(1)
             # remove item from inventory
@@ -82,9 +82,9 @@ class ItemPlacer:
         return areaItemReq[area]
 
     def removeRandomItemFromInventory(self):
-        index = random.randint(0, len(self.itemList) - 1)
-        item = self.itemList[index]
-        self.itemList.remove(item)
+        index = random.randint(0, len(self.liveItemList) - 1)
+        item = self.liveItemList[index]
+        self.liveItemList.remove(item)
         return item
 
     def placeItem(self, item, accessibleAreaList):
@@ -93,12 +93,11 @@ class ItemPlacer:
             index = random.randint(0, len(availableLocations) - 1)
             location = availableLocations[index]
             # add item to dict
-            self.itemLocationDict[location.address] = item
+            self.itemLocationDict[location] = item
             # remove location from list
             self.locationList.remove(location)
             # add item to area
-            area = location.area
-            self.itemsInArea[area].append(item)
+            self.itemsInArea[location.area].append(item)
             return True
         else:  # no available locations
             return False

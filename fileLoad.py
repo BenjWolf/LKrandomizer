@@ -6,13 +6,14 @@ class FileLoad:
     # file names
     cardIDFile = 'data/cardID.csv'
     itemIDFile = 'data/itemID.csv'
+    levelFile = 'data/level.csv'
     startingDeckFullRandomFile = 'data/startingDeckAddressFullRandom.csv'
     startingDeckBalancedFile = 'data/startingDeckAddressBalanced.csv'
     startingInventoryASMFile = 'data/startingInventoryHex.txt'
     startingInventoryAddress = int(b'78908', 16)
     startingInventoryAdditionalASMFile = 'data/startingInventoryAdditionalHex.txt'
     startingInventoryAdditionalAddress = int(b'129810', 16)
-    chestCardItemFile = 'data/chestCardItem.csv'
+    locationFile = 'data/location.csv'
     warriorWyhtFile = 'data/warriorWyhtAddress.csv'
     levelBonusCardFile = 'data/levelBonusAddress.csv'
     shopCardFile = 'data/shopCardAddress.csv'
@@ -27,19 +28,21 @@ class FileLoad:
     isoSize = 1459978240
     gameID = bytes(b'GRNE52')
 
-    def __init__(self):
+    def __init__(self):  # todo change to cardList and itemList(maybe) to dict
         self.cardList = list()  # member: Card object
         self.loadCards()
         self.itemList = list()  # member: Item object
         self.loadItems()
+        self.levelDict = dict()  # member: Level object
+        self.loadLevels()
         self.startingDeckFullRandomList = list()  # member: list() of two address
         self.loadStartingDeckFullRandom()
         self.startingDeckBalancedList = list()  # member: StartingDeckSlot object
         self.loadStartingDeckBalanced()
         self.startingInventoryASMDict = dict()  # key: .iso address, value: asm code in hex
         self.loadStartingInventoryASM()
-        self.chestCardItemList = list()  # member: Location object
-        self.loadChestCardItem()
+        self.locationList = list()  # member: Location object
+        self.loadLocation()
         self.warriorWyhtList = list()  # member: AddressValue
         self.loadWarriorWyht()
         self.levelBonusList = list()  # member: LevelBonusSlot object
@@ -97,6 +100,18 @@ class FileLoad:
                 item = classes.Item(line[0], line[1])
                 self.itemList.append(item)
 
+    def loadLevels(self):
+        # load [levelID, levelName, levelHint] from file into levelList
+        with open(self.levelFile, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                line = line.rstrip('\r\n')
+                line = line.split(',')
+                line[0] = int(line[0])
+                line[2] = line[2].split('.')
+                level = classes.Level(line[0], line[1], line[2])
+                self.levelDict[level.levelID] = level
+
     def loadStartingDeckFullRandom(self):
         with open(self.startingDeckFullRandomFile, 'r') as file:
             lines = file.readlines()
@@ -145,9 +160,9 @@ class FileLoad:
                 self.startingInventoryASMDict[self.startingInventoryAdditionalAddress] = line
                 self.startingInventoryAdditionalAddress += 4
 
-    def loadChestCardItem(self):
-        # load [.iso address, type, area, level name, location desc, originalInteractID, typeAddress(optional)] from file into locations list
-        with open(self.chestCardItemFile, 'r') as file:
+    def loadLocation(self):
+        # load [.iso address, type, area, levelID, location desc, originalInteractID, typeAddress(optional)] from file into locations list
+        with open(self.locationFile, 'r') as file:
             lines = file.readlines()
             for line in lines:
                 line = line.rstrip('\r\n')
@@ -155,6 +170,7 @@ class FileLoad:
                 line[0] = int(line[0], 16)
                 line[1] = int(line[1])
                 line[2] = int(line[2])
+                line[3] = int(line[3])
                 line[5] = int(line[5], 16)
                 line[5] = line[5].to_bytes(1, byteorder='big')
                 if not line[6] == '':  # has type address
@@ -162,7 +178,7 @@ class FileLoad:
                     location = classes.Location(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
                 else:
                     location = classes.Location(line[0], line[1], line[2], line[3], line[4], line[5])
-                self.chestCardItemList.append(location)
+                self.locationList.append(location)
 
     def loadWarriorWyht(self):
         self.loadAddressValueFile(self.warriorWyhtFile, self.warriorWyhtList, 16, 1)
@@ -228,3 +244,4 @@ class FileLoad:
                 line[1] = line[1].to_bytes(numBytes, byteorder='big')  # values have lengths of two bytes
                 addressValue = classes.AddressValue(line[0], line[1])
                 intoList.append(addressValue)
+
