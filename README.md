@@ -1,10 +1,10 @@
-# LKrandomizer v0.7
+# LKrandomizer v0.8
 ~~~
 Application written by: Benjamin Wolf
 Assembly and memory assistance: Papaya (Initials: A.M.W.)
-8/29/2019
+November 3, 2019
 ~~~
-### [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.7/LKrandomizer_v0.7DOWNLOAD.rar)
+### [Download Here](https://github.com/BenjWolf/LKrandomizer/releases/download/v0.8/LKrandomizer_v0.8DOWNLOAD.rar)
 ## Description
 
 This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with the card pickups randomized.
@@ -50,14 +50,24 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 ~~~
 Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wyht, Red Candle, Blue Candle, Green Candle, Yellow Candle, Old Sheet Music, Stone of Cleansing, White Gem, Black Gem, Stone of Darkness, Necklace of the Pharaoh
 ~~~
-* The original item location (including chests, reward for beating Mind Flayer, and Warrior of Wyht key giver) will have randomized contents
+* The original item location (including chests, reward for beating Mind Flayer, and Castle Wyht key giver) will have randomized contents
 * The side levels and elemental temples may contain items
 * The herb trees in Rohbach are deactivated, to complete the level you must have the 3 herbs in your inventory and reach the last herb tree
 * After using an item, or leaving a level, all items stay in your inventory
 * After completing a level, you can reenter it anytime so that you can't miss items
 * Key items are not saved to memory card, so use save states if you want to save your game
 * The pause menu will only show 5 of your items, so take notes
-* 'Allow hidden cards to be items' option: Includes hidden cards in pool of locations items can appear (use with caution due to at least one instance of game-breaking bug occuring)
+
+### NPCs that give hints about items:
+
+* Alanjeh Castle - Warrior facing you at start
+* Plains of Rowahl - 2 soldiers sitting around campfire
+* Blessoon - Warrior by fountain, warrior by diary, Alexander
+* Burial Grounds - Warrior near start, Lord Unther
+* Castle Grayl - 3 warriors
+* Dahl-nok - Border guard
+* Kendarie Castle - Cutscene has 3 hints
+* Lumsted - Gurd
 
 ### Difficulty
 
@@ -112,13 +122,11 @@ Balanced:
 
 ## Known Issues/Bugs
 
-* Key items placed in card chests/hidden cards still show a card model and have incorrect animation
-* With 'Allow hidden cards to be items': possibility of character freeze (unable to move or pause) when getting item from hidden card and then interacting with another object (occured with Burial Grounds 'card under cart' having item and then checking fairy in well) 
+* Key items placed in card chests still show a card model and have incorrect animation
 * Key items placed in non-vanilla key item chests show wrong model
 * Cards placed in key item chests will not have a model
-* Flayer Spawn item always shows shayel key model
+* Mind Flayer item always shows shayel key model
 * Warrior of Wyht item always shows wyht key model 
-* The text when talking to a Warrior of Wyht has original card message
 * Key item inventory will carry between save games/new games, need to reset to empty inventory
 * Pause menu only shows first 5 key items
 
