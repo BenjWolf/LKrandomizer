@@ -1,5 +1,6 @@
 import random
 
+
 class ItemPlacer:
 
     def __init__(self, locationList, itemIDs):
@@ -7,7 +8,7 @@ class ItemPlacer:
         self.allItems = itemIDs
         self.liveItemList = list(itemIDs)  # member: item object / start with all items, removes until empty
         self.inventoryDict = dict()  # key: item name. value: bool (true when in inventory)
-        self.itemLocationDict = dict()  # items placed in location. key: location object, value: item object
+        self.locationItemDict = dict()  # items placed in location. key: location object, value: item object
         self.areaGraph = dict()  # area connections
         self.itemsInArea = dict()  # what items are in an area. key: area num. value: item name
         self.setDicts()
@@ -93,7 +94,7 @@ class ItemPlacer:
             index = random.randint(0, len(availableLocations) - 1)
             location = availableLocations[index]
             # add item to dict
-            self.itemLocationDict[location] = item
+            self.locationItemDict[location] = item
             # remove location from list
             self.locationList.remove(location)
             # add item to area
@@ -110,5 +111,5 @@ class ItemPlacer:
                 availableLocationsList.remove(location)
         return availableLocationsList
 
-    def getItemLocationDict(self):
-        return self.itemLocationDict
+    def getLocationItemDict(self):
+        return self.locationItemDict

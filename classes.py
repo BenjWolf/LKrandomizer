@@ -1,6 +1,18 @@
 import tkinter as tk
 
 
+class AddressValue:
+    """
+    Data pair representing .iso address and either a new or original value
+    address (int16): iso offset of value to be replaced
+    value (bytes): new value to write to .iso or the original value
+    """
+
+    def __init__(self, address, value):
+        self.address = address
+        self.value = value
+
+
 class Card:
     """
     cardID (byte): when receiving card in menus
@@ -25,6 +37,30 @@ class Item:
         self.itemName = itemName
 
 
+class Level:
+    """
+    levelID (int)
+    levelName (str)
+    hints(list of str)
+    """
+
+    def __init__(self, levelID, levelName, hints):
+        self.levelID = levelID
+        self.levelName = levelName
+        self.hints = hints
+
+
+class LevelBonusSlot:
+    """
+    A slot is made up of multiples of the same card. A slot may have 1 to 4 multiples.
+    addresses (list of int16): iso offset of cards in slot
+    originalCardID (byte): value we are replacing
+    """
+    def __init__(self, addressList, originalCardID):
+        self.addressList = addressList
+        self.originalCardID = originalCardID
+
+
 class Location:
     """
     address (int16): iso offset of object to receive from interaction
@@ -45,26 +81,14 @@ class Location:
         self.typeAddress = typeAddress
 
 
-class LevelBonusSlot:
+class NpcDialogue:
     """
-    A slot is made up of multiples of the same card. A slot may have 1 to 4 multiples.
-    addresses (list of int16): iso offset of cards in slot
-    originalCardID (byte): value we are replacing
+    address (int16): iso offset of dialogue start
+    length (int): number of chars to overwrite
     """
-    def __init__(self, addressList, originalCardID):
-        self.addressList = addressList
-        self.originalCardID = originalCardID
-
-
-class AddressValue:
-    """
-    Data pair representing .iso address and either a new or original value
-    address (int16): iso offset of value to be replaced
-    value (bytes): new value to write to .iso or the original value
-    """
-    def __init__(self, address, value):
+    def __init__(self, address, length):
         self.address = address
-        self.value = value
+        self.length = length
 
 
 class StartingDeckSlot:
@@ -78,16 +102,16 @@ class StartingDeckSlot:
         self.replaceCardList = replaceCardList
 
 
-class Level:
+class WarriorWyht:
     """
-    levelID (int)
-    levelName (str)
-    hints(list of str)
+    cardAddress (int16): iso offset of cardID received from NPC to overwrite
+    orginalCardID (byte): value we are replacing
+    DialogueAddress (int16): iso offset of text to overwrite
     """
-    def __init__(self, levelID, levelName, hints):
-        self.levelID = levelID
-        self.levelName = levelName
-        self.hints = hints
+    def __init__(self, cardAddress, originalCardID, dialogueAddress):
+        self.cardAddress = cardAddress
+        self.originalCardID = originalCardID
+        self.dialogueAddress = dialogueAddress
 
 
 class WidgetVars:

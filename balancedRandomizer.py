@@ -7,8 +7,8 @@ Child class of Randomizer
 
 class BalancedRandomizer(randomizer.Randomizer):
 
-    def __init__(self, seedVal, cardList, levelList, locationList):
-        super().__init__(seedVal, cardList, levelList, locationList)
+    def __init__(self, seedVal, cardList, levelDict, itemList, locationList):
+        super().__init__(seedVal, cardList, levelDict, itemList, locationList)
         self.rarityLists = dict()  # members: four lists of cards, one for each rarity level
         self.buildRarityLists()
 
@@ -38,7 +38,7 @@ class BalancedRandomizer(randomizer.Randomizer):
 
     def randomizeLocations(self):
         if self.IP is not None:  # items were placed
-            itemLocationDict = self.IP.getItemLocationDict()
+            itemLocationDict = self.IP.getLocationItemDict()
         else:
             itemLocationDict = dict()
         # build output dict and log
@@ -58,11 +58,12 @@ class BalancedRandomizer(randomizer.Randomizer):
 
     def randomizeWarriorWyhtCards(self, warriorWyhtList):
         self.spoilerLog += 'Warrior of Wyht cards:\n'
-        for member in warriorWyhtList:
-            originalCard = self.getCardFromCardID(member.value)
+        for warrior in warriorWyhtList:
+            originalCard = self.getCardFromCardID(warrior.originalCardID)
             card = self.getRandomCardFromRarity(originalCard.rarity)
-            self.outputDict[member.address] = card.cardID
+            self.outputDict[warrior.cardAddress] = card.cardID
             self.spoilerLog += card.cardName + '. '  # print card name
+            self.prepareWarriorDialogue(warrior, card)
         self.spoilerLog += '\n\n'
 
     def randomizeLevelBonusCards(self, levelBonusList):

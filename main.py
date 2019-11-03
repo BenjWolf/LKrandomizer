@@ -31,9 +31,9 @@ class Mediator:
         else:
             # make instance of randomizer
             if widgetVars.randomStyle.get() == 1:  # full random
-                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.locationList)
+                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList)
             else:  # balanced random
-                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.locationList)
+                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList)
             # starting deck
             if widgetVars.startingDeckChecked.get():
                 randInstance.randomizeStartingDeck(self.loader.startingDeckFullRandomList, self.loader.startingDeckBalancedList, self.loader.startingInventoryASMDict)
@@ -47,7 +47,9 @@ class Mediator:
             else:
                 randInstance.removeHiddenCards()
             if widgetVars.keyItemsChecked.get():
-                randInstance.doKeyItems(self.loader.itemList)
+                randInstance.doKeyItems()
+                if widgetVars.itemHintsChecked.get():
+                    randInstance.doItemHints(self.loader.npcAddressList)
             else:
                 randInstance.removeKeyItems()
             if widgetVars.chestCardsChecked.get() or widgetVars.hiddenCardsChecked.get() or widgetVars.keyItemsChecked.get():

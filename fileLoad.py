@@ -19,6 +19,7 @@ class FileLoad:
     shopCardFile = 'data/shopCardAddress.csv'
     fairyCardFile = 'data/fairyCardAddress.csv'
     enemyAttributeFile = 'data/enemyAttributeAddress.txt'
+    npcAddressFile = 'data/npcAddress.txt'
     deckPointFile = 'data/deckPointAddress.txt'
     lk2CardFile = 'data/lk2Card.csv'
     lk2EnemyFile = 'data/lk2Enemy.csv'
@@ -53,6 +54,8 @@ class FileLoad:
         self.loadFairyCards()
         self.enemyAttributeList = list()  # member: .iso address
         self.loadEnemyAttributes()
+        self.npcAddressList = list()  # member: npcDialogue object
+        self.loadNpcAddress()
         self.deckPointList = list()  # member: .iso address
         self.loadDeckPoints()
         self.lk2CardChangeList = list()  # member: AddressValue object
@@ -181,7 +184,17 @@ class FileLoad:
                 self.locationList.append(location)
 
     def loadWarriorWyht(self):
-        self.loadAddressValueFile(self.warriorWyhtFile, self.warriorWyhtList, 16, 1)
+        with open(self.warriorWyhtFile, 'r') as file:
+            lines = file.readlines()
+            for line in lines:
+                line = line.rstrip('\r\n')
+                line = line.split(',')
+                line[0] = int(line[0], 16)
+                line[1] = int(line[1], 16)
+                line[1] = line[1].to_bytes(1, byteorder='big')
+                line[2] = int(line[2], 16)
+                warriorWhyt = classes.WarriorWyht(line[0], line[1], line[2])
+                self.warriorWyhtList.append(warriorWhyt)
 
     def loadLevelBonusCards(self):
         # load [multiple .iso address seperated by '.', original cardID
@@ -208,6 +221,9 @@ class FileLoad:
 
     def loadEnemyAttributes(self):
         self.loadAddressTxtFile(self.enemyAttributeFile, self.enemyAttributeList)
+
+    def loadNpcAddress(self):
+        self.loadAddressTxtFile(self.npcAddressFile, self.npcAddressList)
 
     def loadDeckPoints(self):
         self.loadAddressTxtFile(self.deckPointFile, self.deckPointList)
