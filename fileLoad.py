@@ -77,7 +77,7 @@ class FileLoad:
         return True
 
     def loadCards(self):
-        # load [card ID, interact ID, card name, rarity] from file into cards list
+        # load [card ID, interact ID, card name, rarity, banned-under-fair-play-rule] from file into cards list
         with open(self.cardIDFile, 'r') as file:
             lines = file.readlines()
             for line in lines:
@@ -88,7 +88,9 @@ class FileLoad:
                 line[1] = int(line[1], 16)
                 line[1] = line[1].to_bytes(1, byteorder='big')
                 line[3] = int(line[3])
-                card = classes.Card(line[0], line[1], line[2], line[3])
+                line[4] = int(line[4])
+                card = classes.Card(line[0], line[1], line[2], line[3],
+                                    line[4] == 1)
                 self.cardList.append(card)
 
     def loadItems(self):
@@ -260,4 +262,3 @@ class FileLoad:
                 line[1] = line[1].to_bytes(numBytes, byteorder='big')  # values have lengths of two bytes
                 addressValue = classes.AddressValue(line[0], line[1])
                 intoList.append(addressValue)
-

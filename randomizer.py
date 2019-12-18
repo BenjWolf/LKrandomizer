@@ -11,7 +11,8 @@ class Randomizer:
     itemGetByte = b'\x65'
     nopCode = bytes(b'\x60\x00\x00\x00')
 
-    def __init__(self, seedVal, cardList, levelDict, itemList, locationList):
+    def __init__(self, seedVal, cardList, levelDict, itemList, locationList,
+                 fairPlayOnly=False):
         random.seed(a=seedVal)  # seed the random module
         self.cardList = cardList  # member: card object
         self.levelDict = levelDict  # member: level object
@@ -23,6 +24,7 @@ class Randomizer:
         self.optionLog = 'Options:\n'
         self.writeRandomizationStyleToLog()
         self.spoilerLog = str()
+        self.fairPlayOnly = fairPlayOnly
 
     def writeRandomizationStyleToLog(self):
         self.optionLog += 'Full randomization style\n'
@@ -200,10 +202,13 @@ class Randomizer:
         self.outputDict.update(itemFixDict)
 
     def getRandomCard(self):
-        index = random.randint(0, len(self.cardList) - 1)  # choose random index to pull from cardIDs
-        card = self.cardList[index]
+        while True:
+            index = random.randint(0, len(self.cardList) - 1)  # choose random index to pull from cardIDs
+            card = self.cardList[index]
+            # Accept subject to fair-play rule condition.
+            if (not card.banned) or (not self.fairPlayOnly):
+                break
         return card
 
     def getRandomizerOutput(self):
         return self.outputDict, self.optionLog, self.spoilerLog  # return tuple
-
