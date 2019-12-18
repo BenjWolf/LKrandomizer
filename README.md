@@ -73,6 +73,7 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 * Can't escape battles: Disables walking to edge of arena to leave battle
 * Deactivate deck points: Deck points are no longer interactable, making it impossible to heal or edit deck within the level
+* Fair Play cards only: Does not generate cards that are banned under the 2-player Fair Play rule
 
 ### Other
 
