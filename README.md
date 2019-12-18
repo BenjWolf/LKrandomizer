@@ -27,7 +27,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 * Mix and match randomization options: starting deck, chest cards, shop cards, key items, etc.
 * Main levels and side quests included in randomization.
-* Difficulty options: deactivated deck points, no escaping battles
+* Difficulty options: deactivated deck points, no escaping battles, disabling cards banned under the Fair Play rule
 * Seed displayed in-game as default player name
 * Spoiler log with descriptions of starting deck, chest contents, etc.
 
