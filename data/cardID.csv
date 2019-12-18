@@ -1,105 +1,105 @@
-01,65,Skeleton,1
-02,66,Ghost Armor,2
-03,67,Red Dragon,4
-04,68,Golden Goose,3
-05,69,Lizardman,1
-0A,6E,Mandragora,1
-0B,6F,Red Lizard,1
-0C,70,Unicorn,3
-0D,71,Hobgoblin,1
-0F,73,Sand Golem,2
-10,74,Jack-O-Lantern,2
-12,76,Man Trap,1
-14,78,Sand Worm,2
-15,79,Mummy,1
-16,7A,Cockatrice,2
-17,7B,Sasquatch,2
-18,7C,Wraith,1
-19,7D,Orc,1
-1B,7F,Fairy,1
-1C,80,Mind Flayer,3
-1F,83,Catoblepas,2
-20,84,Kraken,3
-21,85,Water Hopper,2
-22,86,Fenril,3
-23,87,Lich,3
-24,88,Carbuncle,1
-26,8A,Flayer Spawn,1
-27,8B,Elephant King,3
-28,8C,Zombie Dragon,3
-29,8D,Fire Golem,2
-2A,8E,Running Bird,1
-2B,8F,Giant Crab,1
-2C,90,Banshee,2
-2D,91,Land Shark,1
-2E,92,Berserker,3
-2F,93,Flying Ray,1
-30,94,Demon Hound,1
-31,95,Behemoth,3
-32,96,Mole Monster,3
-33,97,Maelstrom,2
-35,99,Lycanthrope,1
-36,9A,Sand Beetle,1
-37,9B,Necromancer,3
-38,9C,Great Turtle,4
-39,9D,Gold Butterfly,1
-3A,9E,Ghoul,1
-3B,9F,Treant,1
-3D,A1,Sea Monk,1
-3E,A2,Crystal Rose,1
-3F,A3,Dark Raven,1
-40,A4,Black Dragon,4
-41,A5,Wizard,1
-42,A6,Dragonoid,1
-43,A7,Giant Bee,2
-44,A8,Birdman,1
-45,A9,Will o'wisp,1
-46,AA,Archer Tree,1
-47,AB,Stone Head,2
-48,AC,Blood Bush,2
-49,AD,Efreet,2
-4A,AE,Dragon Knight,2
-4B,AF,Demon Fox,3
-4C,B0,Juggernaut,2
-4D,B1,Fire Gargoyle,3
-4E,B2,Great Demon,2
-4F,B3,Evil Eye,1
-50,B4,Blue Dragon,4
-51,B5,Griffin,2
-52,B6,Tiger Mage,2
-53,B7,Hydra,2
-54,B8,Siren,2
-55,B9,Chimera,2
-56,BA,Rheebus,1
-57,BB,Scythe Beast,1
-58,BC,Kitty Trap,2
-59,BD,Night Mare,2
-5A,BE,Golden Phoenix,4
-5B,BF,White Tiger,4
-5C,C0,Venus Spider,1
-5D,C1,Vampire,3
-5E,C2,Sphinx,3
-5F,C3,Puppet Master,3
-60,C4,Plague Rat,1
-61,C5,Hand of Pain,2
-62,C6,Whip Worm,2
-63,C7,Trickster,2
-64,C8,Caterpoker,1
-65,C9,Beelzabub,3
-66,CA,Ice Golem,3
-67,CB,MegaMandragora,3
-68,CC,Basilisk,2
-69,CD,Larval Fly,3
-6A,CE,Water Bird,2
-6B,CF,Demon Skeleton,2
-6C,D0,Vampire Bush,2
-6D,D1,Elephant,2
-6E,D2,Goblin Lord,2
-6F,D3,Cyclops,3
-70,D4,Steel Skeleton,3
-71,D5,Chaos Knight,3
-72,D6,Decoy Piller,4
-73,D7,Doppelganger,4
-74,D8,Hand of Fire,2
-75,D9,Venom Lizard,2
-76,DA,God of Destruction,4
+01,65,Skeleton,1,0
+02,66,Ghost Armor,2,0
+03,67,Red Dragon,4,0
+04,68,Golden Goose,3,0
+05,69,Lizardman,1,0
+0A,6E,Mandragora,1,0
+0B,6F,Red Lizard,1,0
+0C,70,Unicorn,3,1
+0D,71,Hobgoblin,1,0
+0F,73,Sand Golem,2,0
+10,74,Jack-O-Lantern,2,0
+12,76,Man Trap,1,0
+14,78,Sand Worm,2,0
+15,79,Mummy,1,0
+16,7A,Cockatrice,2,0
+17,7B,Sasquatch,2,0
+18,7C,Wraith,1,0
+19,7D,Orc,1,0
+1B,7F,Fairy,1,1
+1C,80,Mind Flayer,3,1
+1F,83,Catoblepas,2,0
+20,84,Kraken,3,0
+21,85,Water Hopper,2,0
+22,86,Fenril,3,0
+23,87,Lich,3,0
+24,88,Carbuncle,1,0
+26,8A,Flayer Spawn,1,0
+27,8B,Elephant King,3,0
+28,8C,Zombie Dragon,3,0
+29,8D,Fire Golem,2,0
+2A,8E,Running Bird,1,0
+2B,8F,Giant Crab,1,0
+2C,90,Banshee,2,0
+2D,91,Land Shark,1,0
+2E,92,Berserker,3,0
+2F,93,Flying Ray,1,0
+30,94,Demon Hound,1,0
+31,95,Behemoth,3,0
+32,96,Mole Monster,3,0
+33,97,Maelstrom,2,0
+35,99,Lycanthrope,1,0
+36,9A,Sand Beetle,1,0
+37,9B,Necromancer,3,0
+38,9C,Great Turtle,4,1
+39,9D,Gold Butterfly,1,0
+3A,9E,Ghoul,1,0
+3B,9F,Treant,1,0
+3D,A1,Sea Monk,1,1
+3E,A2,Crystal Rose,1,0
+3F,A3,Dark Raven,1,0
+40,A4,Black Dragon,4,0
+41,A5,Wizard,1,0
+42,A6,Dragonoid,1,0
+43,A7,Giant Bee,2,0
+44,A8,Birdman,1,0
+45,A9,Will o'wisp,1,0
+46,AA,Archer Tree,1,0
+47,AB,Stone Head,2,0
+48,AC,Blood Bush,2,0
+49,AD,Efreet,2,0
+4A,AE,Dragon Knight,2,0
+4B,AF,Demon Fox,3,0
+4C,B0,Juggernaut,2,0
+4D,B1,Fire Gargoyle,3,0
+4E,B2,Great Demon,2,0
+4F,B3,Evil Eye,1,0
+50,B4,Blue Dragon,4,0
+51,B5,Griffin,2,0
+52,B6,Tiger Mage,2,0
+53,B7,Hydra,2,0
+54,B8,Siren,2,0
+55,B9,Chimera,2,0
+56,BA,Rheebus,1,1
+57,BB,Scythe Beast,1,0
+58,BC,Kitty Trap,2,0
+59,BD,Night Mare,2,0
+5A,BE,Golden Phoenix,4,1
+5B,BF,White Tiger,4,1
+5C,C0,Venus Spider,1,0
+5D,C1,Vampire,3,0
+5E,C2,Sphinx,3,0
+5F,C3,Puppet Master,3,0
+60,C4,Plague Rat,1,0
+61,C5,Hand of Pain,2,0
+62,C6,Whip Worm,2,0
+63,C7,Trickster,2,0
+64,C8,Caterpoker,1,0
+65,C9,Beelzabub,3,0
+66,CA,Ice Golem,3,0
+67,CB,MegaMandragora,3,0
+68,CC,Basilisk,2,0
+69,CD,Larval Fly,3,0
+6A,CE,Water Bird,2,1
+6B,CF,Demon Skeleton,2,0
+6C,D0,Vampire Bush,2,0
+6D,D1,Elephant,2,0
+6E,D2,Goblin Lord,2,0
+6F,D3,Cyclops,3,0
+70,D4,Steel Skeleton,3,0
+71,D5,Chaos Knight,3,0
+72,D6,Decoy Piller,4,0
+73,D7,Doppelganger,4,1
+74,D8,Hand of Fire,2,0
+75,D9,Venom Lizard,2,0
+76,DA,God of Destruction,4,1
