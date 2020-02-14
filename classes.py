@@ -19,12 +19,15 @@ class Card:
     interactID (byte): when receiving card from interact
     cardName (str)
     rarity (int): 1: common, 2: uncommon, 3: rare, 4: one-of-a-kind
+    banned (boolean): whether or not the card is banned under the 2-player
+        fair-play rule
     """
-    def __init__(self, cardID, interactID, cardName, rarity):
+    def __init__(self, cardID, interactID, cardName, rarity, banned):
         self.cardID = cardID
         self.interactID = interactID
         self.cardName = cardName
         self.rarity = rarity
+        self.banned = banned
 
 
 class Item:
@@ -134,6 +137,7 @@ class WidgetVars:
         self.deckPointChecked = tk.BooleanVar()
         self.lk2CardChecked = tk.BooleanVar()
         self.lk2EnemyChecked = tk.BooleanVar()
+        self.fairPlay = tk.BooleanVar()
         self.randomStyle = tk.IntVar()
         self.genIsoSelected = tk.BooleanVar()
         self.includeSpoilersSelected = tk.BooleanVar()

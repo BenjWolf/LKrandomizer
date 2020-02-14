@@ -106,6 +106,9 @@ class GUI:
         deckPointButton = tk.Checkbutton(middleFrame, text='Deactivate deck points', variable=self.widgetVars.deckPointChecked)
         deckPointButton.pack(anchor='w')
 
+        fairPlayButton = tk.Checkbutton(middleFrame, text='Fair Play cards only', variable=self.widgetVars.fairPlay)
+        fairPlayButton.pack(anchor='w')
+
         # spacer
         tk.Label(middleFrame, text='').pack()
 

@@ -31,9 +31,9 @@ class Mediator:
         else:
             # make instance of randomizer
             if widgetVars.randomStyle.get() == 1:  # full random
-                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList)
+                randInstance = randomizer.Randomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList, fairPlayOnly=widgetVars.fairPlay)
             else:  # balanced random
-                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList)
+                randInstance = balancedRandomizer.BalancedRandomizer(widgetVars.seedInput.get(), self.loader.cardList, self.loader.levelDict, self.loader.itemList, self.loader.locationList, fairPlayOnly=widgetVars.fairPlay)
             # starting deck
             if widgetVars.startingDeckChecked.get():
                 randInstance.randomizeStartingDeck(self.loader.startingDeckFullRandomList, self.loader.startingDeckBalancedList, self.loader.startingInventoryASMDict)

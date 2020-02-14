@@ -7,8 +7,10 @@ Child class of Randomizer
 
 class BalancedRandomizer(randomizer.Randomizer):
 
-    def __init__(self, seedVal, cardList, levelDict, itemList, locationList):
-        super().__init__(seedVal, cardList, levelDict, itemList, locationList)
+    def __init__(self, seedVal, cardList, levelDict, itemList, locationList,
+                 fairPlayOnly=False):
+        super().__init__(seedVal, cardList, levelDict, itemList, locationList,
+                         fairPlayOnly=fairPlayOnly)
         self.rarityLists = dict()  # members: four lists of cards, one for each rarity level
         self.buildRarityLists()
 
@@ -113,8 +115,12 @@ class BalancedRandomizer(randomizer.Randomizer):
 
     def getRandomCardFromRarity(self, rarity):
         if rarity in self.rarityLists.keys():  # choose from any card
-            index = random.randint(0, len(self.rarityLists[rarity]) - 1)
-            card = self.rarityLists[rarity][index]
+            while True:
+                index = random.randint(0, len(self.rarityLists[rarity]) - 1)
+                card = self.rarityLists[rarity][index]
+                # Accept subject to fair-play rule condition.
+                if (not card.banned) or (not self.fairPlayOnly):
+                    break
         else:
             card = self.getRandomCard()
         return card

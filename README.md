@@ -27,7 +27,7 @@ This program takes a Lost Kingdoms (USA) .iso file and produces a new .iso with 
 
 * Mix and match randomization options: starting deck, chest cards, shop cards, key items, etc.
 * Main levels and side quests included in randomization.
-* Difficulty options: deactivated deck points, no escaping battles
+* Difficulty options: deactivated deck points, no escaping battles, disabling cards banned under the Fair Play rule
 * Seed displayed in-game as default player name
 * Spoiler log with descriptions of starting deck, chest contents, etc.
 
@@ -73,6 +73,7 @@ Shayel Key, Fruit of Mandragora, Bark of Treant, Man Trap Leaf, Key of Castle Wy
 
 * Can't escape battles: Disables walking to edge of arena to leave battle
 * Deactivate deck points: Deck points are no longer interactable, making it impossible to heal or edit deck within the level
+* Fair Play cards only: Does not generate cards that are banned under the 2-player Fair Play rule
 
 ### Other
 
